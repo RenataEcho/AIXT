@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小提大作 · 生态闭环</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: #f5f7fa;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .ecosystem {
+      width: 100%;
+      max-width: 720px;
+      background: #fff;
+      border: 2px solid #333;
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .ecosystem__header {
+      text-align: center;
+      padding: 16px 20px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #333;
+      background: linear-gradient(180deg, #fafbfc 0%, #f0f2f5 100%);
+    }
+
+    .ecosystem__body {
+      padding: 0;
+    }
+
+    .layer {
+      border-bottom: 1px solid #ddd;
+      padding: 14px 20px;
+    }
+
+    .layer:last-child {
+      border-bottom: none;
+    }
+
+    .layer__title {
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .layer__title span {
+      color: #666;
+      font-weight: 500;
+    }
+
+    .layer__content {
+      color: #444;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .layer__arrow {
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+      background: #fafafa;
+    }
+
+    .layer--traffic  { border-left: 4px solid #3498db; }
+    .layer--produce  { border-left: 4px solid #2ecc71; }
+    .layer--deposit  { border-left: 4px solid #9b59b6; }
+    .layer--copyright { border-left: 4px solid #e67e22; }
+    .layer--trade    { border-left: 4px solid #1abc9c; }
+    .layer--exposure { border-left: 4px solid #e74c3c; }
+    .layer--settle   { border-left: 4px solid #34495e; }
+    .layer--viral    { border-left: 4px solid #f39c12; }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      color: #888;
+      background: #f0f0f0;
+      padding: 1px 6px;
+      border-radius: 3px;
+      margin-left: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ecosystem">
+    <header class="ecosystem__header">小提大作 · 生态闭环</header>
+
+    <div class="ecosystem__body">
+
+      <section class="layer layer--traffic">
+        <div class="layer__title">【引流层】<span>大赏 · 教程 · 体验<span class="tag">目标态</span> · 联系商务</span></div>
+      </section>
+      <div class="layer__arrow">↓ 注册登录</div>
+
+      <section class="layer layer--produce">
+        <div class="layer__title">【生产层】</div>
+        <div class="layer__content">创作（写作🌽 / 画布 SOP🍿）+ 工具链 + Agent 调用</div>
+      </section>
+      <div class="layer__arrow">↓</div>
+
+      <section class="layer layer--deposit">
+        <div class="layer__title">【沉淀层】</div>
+        <div class="layer__content">资产（角色 / 场景 / 模型）· Agent 运行记录 · 个人空间</div>
+      </section>
+      <div class="layer__arrow">↓</div>
+
+      <section class="layer layer--copyright">
+        <div class="layer__title">【版权层】</div>
+        <div class="layer__content">文创（小说版权库 / 剧本版权库 / WWDS 评估）</div>
+      </section>
+      <div class="layer__arrow">↓</div>
+
+      <section class="layer layer--trade">
+        <div class="layer__title">【交易层】</div>
+        <div class="layer__content">市场（作品 / 工作流 / 知识库 · <span class="tag">目标态</span>）</div>
+      </section>
+      <div class="layer__arrow">↓</div>
+
+      <section class="layer layer--exposure">
+        <div class="layer__title">【曝光层】</div>
+        <div class="layer__content">大赏发布 · 播放分成（自报 + 第三方）· 反向复盘</div>
+      </section>
+      <div class="layer__arrow">↓</div>
+
+      <section class="layer layer--settle">
+        <div class="layer__title">【结算层】</div>
+        <div class="layer__content">结算（版权 + 爆米花 + 提现）· 数据看板（扩展）· 发票<span class="tag">目标态</span></div>
+      </section>
+      <div class="layer__arrow">↓</div>
+
+      <section class="layer layer--viral">
+        <div class="layer__title">【裂变层】</div>
+        <div class="layer__content">邀请码 · 邀请分佣 → 同账户结算</div>
+      </section>
+
+    </div>
+  </div>
+
+</body>
+</html>

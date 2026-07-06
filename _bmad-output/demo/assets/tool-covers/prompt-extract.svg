@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="600" viewBox="0 0 480 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1a2332"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7b6cf6"/>
+      <stop offset="100%" stop-color="#00d1a0"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="600" fill="url(#bg)"/>
+  <rect x="64" y="96" width="352" height="200" rx="14" fill="#121820" stroke="#2a3544"/>
+  <circle cx="240" cy="176" r="36" fill="none" stroke="#7b6cf6" stroke-width="3" opacity=".6"/>
+  <polygon points="228,160 228,192 252,176" fill="#7b6cf6" opacity=".8"/>
+  <path d="M120 340 Q200 280 280 340 T440 340" fill="none" stroke="url(#accent)" stroke-width="3" opacity=".5"/>
+  <rect x="88" y="380" width="120" height="32" rx="16" fill="#7b6cf6" opacity=".25" stroke="#7b6cf6"/>
+  <text x="148" y="401" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="12" fill="#b9aefb">\4Í</text>
+  <rect x="224" y="380" width="120" height="32" rx="16" fill="#00d1a0" opacity=".15" stroke="#00d1a0"/>
+  <text x="284" y="401" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="12" fill="#00d1a0">Î<Í</text>
+  <rect x="88" y="428" width="256" height="32" rx="16" fill="#e17055" opacity=".12" stroke="#e17055"/>
+  <text x="216" y="449" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="12" fill="#ff9f7a">bÍ · negative</text>
+  <text x="240" y="520" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="28" font-weight="700" fill="#e8e9ef">Ð:ÍÐÖ</text>
+  <text x="240" y="558" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="14" fill="#8a8d9a">Æ‘þ¥ · ;bÐ:Í</text>
+</svg>

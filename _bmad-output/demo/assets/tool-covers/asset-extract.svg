@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="600" viewBox="0 0 480 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141820"/>
+      <stop offset="100%" stop-color="#1c1420"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="600" fill="url(#bg)"/>
+  <rect x="56" y="100" width="120" height="140" rx="12" fill="#1b1c23" stroke="#7b6cf6" stroke-width="1.5"/>
+  <circle cx="116" cy="148" r="28" fill="#2a2c36"/>
+  <rect x="96" y="188" width="40" height="8" rx="4" fill="#3d3658"/>
+  <text x="116" y="262" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="12" fill="#b9aefb">ºi</text>
+  <rect x="180" y="100" width="120" height="140" rx="12" fill="#1b1c23" stroke="#00b894" stroke-width="1.5"/>
+  <rect x="200" y="130" width="80" height="50" rx="6" fill="#2a3544"/>
+  <rect x="200" y="188" width="80" height="30" rx="4" fill="#2a3544"/>
+  <text x="240" y="262" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="12" fill="#55efc4">:o</text>
+  <rect x="304" y="100" width="120" height="140" rx="12" fill="#1b1c23" stroke="#e17055" stroke-width="1.5"/>
+  <rect x="334" y="140" width="60" height="40" rx="8" fill="#3d2a28"/>
+  <rect x="324" y="188" width="80" height="8" rx="4" fill="#3d3658"/>
+  <text x="364" y="262" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="12" fill="#fab1a0">Sw</text>
+  <rect x="72" y="300" width="336" height="120" rx="12" fill="#0a0b0e" stroke="#2a2c36" stroke-dasharray="6 4"/>
+  <text x="240" y="352" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="13" fill="#8a8d9a">ï( P¿" · D§U</text>
+  <rect x="120" y="372" width="240" height="28" rx="14" fill="#7b6cf6" opacity=".2" stroke="#7b6cf6"/>
+  <text x="240" y="391" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="12" fill="#b9aefb">üú P</text>
+  <text x="240" y="520" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="28" font-weight="700" fill="#e8e9ef"> PD§ÐÖ</text>
+  <text x="240" y="558" text-anchor="middle" font-family="PingFang SC,sans-serif" font-size="14" fill="#8a8d9a">ºi · :o · Sw¿"</text>
+</svg>
