@@ -9,6 +9,9 @@ import sys
 
 DEMO_DIR = os.path.dirname(os.path.abspath(__file__))
 OUTPUT = os.path.join(DEMO_DIR, "demo-standalone.html")
+PUBLIC_DIR = os.path.join(os.path.dirname(DEMO_DIR), "demo-public")
+PUBLIC_OUTPUT = os.path.join(PUBLIC_DIR, "index.html")
+DELIVERABLE = os.path.join(os.path.dirname(DEMO_DIR), "小提大作-完整Demo-单文件.html")
 
 LOCAL_SCRIPTS = [
     "prompt-library-data.js",
@@ -133,8 +136,16 @@ def main() -> None:
     with open(OUTPUT, "w", encoding="utf-8") as f:
         f.write(html)
 
+    os.makedirs(PUBLIC_DIR, exist_ok=True)
+    with open(PUBLIC_OUTPUT, "w", encoding="utf-8") as f:
+        f.write(html)
+    with open(DELIVERABLE, "w", encoding="utf-8") as f:
+        f.write(html)
+
     size = os.path.getsize(OUTPUT)
     print(f"OK: {OUTPUT} ({size:,} bytes / {size / 1024 / 1024:.2f} MB)")
+    print(f"Public entry: {PUBLIC_OUTPUT}")
+    print(f"Deliverable:  {DELIVERABLE}")
 
 
 if __name__ == "__main__":
