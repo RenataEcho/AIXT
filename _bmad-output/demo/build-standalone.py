@@ -20,6 +20,7 @@ LOCAL_SCRIPTS = [
     "wwds-script-data.js",
     "copyright-data.js",
     "page-req-specs.js",
+    "sop-workflow-data.js",
 ]
 
 
@@ -149,6 +150,7 @@ def main() -> None:
         "window.WWDS_SCRIPT_DATA",
         "window.COPYRIGHT_DATA",
         "window.PAGE_REQ_SPECS",
+        "window.SOP_WORKFLOW_DATA",
     ]
     missing = [c for c in checks if c not in html]
     if missing:

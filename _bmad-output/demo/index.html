@@ -265,6 +265,7 @@
     .stat-card .t { font-size:12px; margin-top:6px; }
     .card { background: var(--el-bg-color); border:1px solid var(--el-border-color-lighter); border-radius:12px; padding:18px; margin-bottom:16px; }
     .card h3 { margin:0 0 14px; font-size:15px; display:flex; align-items:center; gap:8px; }
+    .grid-2 { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:16px; }
     .grid-3 { display:grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap:16px; }
     .grid-4 { display:grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap:16px; }
     .badge-new { background: var(--brand-grad); color:#fff; font-size:10px; padding:1px 7px; border-radius:8px; margin-left:8px; vertical-align:middle; }
@@ -301,6 +302,106 @@
     .palette { position:absolute; left:12px; top:12px; width:152px; background: var(--el-bg-color-overlay); border:1px solid var(--el-border-color); border-radius:10px; padding:10px; z-index:2; }
     .palette .p { font-size:12px; padding:6px 8px; border-radius:6px; cursor:grab; margin-bottom:4px; background: var(--el-fill-color); }
     .sop-stage-body { border:1px dashed var(--el-border-color); border-radius:10px; padding:18px; min-height:200px; margin-top:16px; background: var(--el-fill-color-light); }
+    .sop-sec { margin-top:18px; }
+    .sop-sec-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+    .sop-sec-head h4 { margin:0; font-size:14px; font-weight:600; }
+    .sop-sec-head .hint { font-size:12px; color:var(--el-text-color-secondary); }
+    .sop-tag-grid { display:flex; flex-wrap:wrap; gap:8px; }
+    .sop-tag-grid .el-tag { cursor:pointer; user-select:none; }
+    .sop-custom-row { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+    .sop-result-panel { margin-top:16px; padding:14px; border-radius:10px; border:1px solid var(--el-border-color-lighter); background:var(--el-bg-color); }
+    .sop-result-panel .rp-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+    .sop-result-panel .rp-head b { font-size:13px; }
+    .sop-topic-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; }
+    .sop-topic-card { padding:14px; border-radius:10px; border:1px solid var(--el-border-color-lighter); cursor:pointer; transition:border-color .2s,box-shadow .2s; }
+    .sop-topic-card.on { border-color:var(--el-color-primary); box-shadow:0 0 0 1px var(--el-color-primary); }
+    .sop-topic-card .tc-title { font-size:14px; font-weight:600; margin-bottom:6px; }
+    .sop-topic-card .tc-hook { font-size:12px; color:var(--el-text-color-secondary); line-height:1.6; }
+    .sop-style-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px; }
+    .sop-style-card { border-radius:10px; overflow:hidden; border:2px solid transparent; cursor:pointer; transition:border-color .2s; }
+    .sop-style-card.on { border-color:var(--el-color-primary); }
+    .sop-style-card img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+    .sop-style-card .sc-meta { padding:8px 10px; font-size:12px; background:var(--el-fill-color-light); }
+    .sop-script-wrap { border:1px solid var(--el-border-color-lighter); border-radius:10px; overflow:hidden; margin-top:12px; }
+    .sop-script-wrap .sw-head { padding:10px 14px; font-size:13px; font-weight:600; background:var(--el-fill-color-light); border-bottom:1px solid var(--el-border-color-lighter); }
+    .sop-script-body { display:grid; grid-template-columns:180px 1fr; min-height:280px; }
+    .sop-script-nav { border-right:1px solid var(--el-border-color-lighter); background:var(--el-fill-color-light); }
+    .sop-script-nav .sn-item { padding:10px 12px; font-size:12px; cursor:pointer; border-left:3px solid transparent; color:var(--el-text-color-regular); }
+    .sop-script-nav .sn-item.on { background:rgba(123,108,246,.12); border-left-color:var(--el-color-primary); color:#b9aefb; }
+    .sop-script-editor { padding:16px 20px; font-size:14px; line-height:1.85; white-space:pre-wrap; color:var(--el-text-color-primary); overflow-y:auto; max-height:360px; }
+    .sop-excel { margin-top:12px; }
+    .sop-excel .el-table { font-size:12px; }
+    .sop-excel .cell-img { width:48px; height:48px; border-radius:6px; object-fit:cover; background:var(--el-fill-color); }
+    .sop-excel .cell-img-lg { width:72px; height:54px; border-radius:6px; object-fit:cover; }
+    .sop-3d-panel { margin-top:10px; padding:12px; border-radius:8px; background:var(--el-fill-color-light); border:1px dashed var(--el-border-color); }
+    .sop-3d-panel .d3-preview { width:100%; height:120px; border-radius:8px; background:linear-gradient(135deg,#1a1a2e,#16213e); display:flex; align-items:center; justify-content:center; margin-bottom:10px; overflow:hidden; position:relative; }
+    .sop-3d-panel .d3-preview img { max-height:100%; max-width:100%; object-fit:contain; transition:transform .3s; }
+    .sop-3d-sliders { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .sop-3d-sliders label { font-size:11px; color:var(--el-text-color-secondary); display:block; margin-bottom:4px; }
+    /* SOP 人物工作室 · 三视图 + 表情 + 3D 拖动 */
+    .sop-char-studio { margin-top:14px; border:1px solid var(--el-border-color-lighter); border-radius:12px; overflow:hidden; background:var(--el-bg-color); }
+    .sop-char-studio-head { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid var(--el-border-color-lighter); background:var(--el-fill-color-light); flex-wrap:wrap; gap:8px; }
+    .sop-char-studio-body { display:grid; grid-template-columns:1fr 300px; gap:0; min-height:480px; }
+    .sop-char-viewport-wrap { padding:16px; border-right:1px solid var(--el-border-color-lighter); display:flex; flex-direction:column; }
+    .sop-char-viewport { flex:1; min-height:360px; border-radius:10px; position:relative; cursor:grab; user-select:none; overflow:hidden;
+      background:radial-gradient(ellipse at 50% 80%, rgba(123,108,246,.12) 0%, transparent 60%), linear-gradient(180deg,#1a1d2e 0%,#0d0f18 100%); }
+    .sop-char-viewport.dragging { cursor:grabbing; }
+    .sop-char-viewport-hint { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); font-size:11px; color:rgba(255,255,255,.45); pointer-events:none; white-space:nowrap; }
+    .sop-char-viewport-stage { width:100%; height:100%; display:flex; align-items:center; justify-content:center; perspective:900px; }
+    .sop-char-viewport-model { width:min(280px,70%); height:min(420px,85%); transform-style:preserve-3d; transition:transform .08s linear; will-change:transform; }
+    .sop-char-viewport-face { width:100%; height:100%; border-radius:8px; background-color:#fff; background-repeat:no-repeat; box-shadow:0 12px 40px rgba(0,0,0,.45); }
+    .sop-char-viewport-meta { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+    .sop-char-sidebar { padding:14px; overflow-y:auto; max-height:520px; }
+    .sop-char-sidebar h5 { margin:0 0 8px; font-size:12px; font-weight:600; color:var(--el-text-color-secondary); }
+    .sop-char-views-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:14px; }
+    .sop-char-view-thumb { aspect-ratio:3/4; border-radius:8px; border:2px solid transparent; cursor:pointer; background-color:#fff; background-repeat:no-repeat; transition:border-color .2s; position:relative; padding-bottom:22px; box-sizing:border-box; }
+    .sop-char-view-thumb.on { border-color:var(--el-color-primary); box-shadow:0 0 0 1px var(--el-color-primary); }
+    .sop-char-view-thumb span { position:absolute; bottom:0; left:0; right:0; display:block; text-align:center; font-size:10px; padding:4px; color:var(--el-text-color-secondary); background:var(--el-fill-color-light); border-radius:0 0 6px 6px; }
+    .sop-char-expr-row { display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; margin-bottom:14px; }
+    .sop-char-expr-thumb { width:58px; flex-shrink:0; cursor:pointer; text-align:center; }
+    .sop-char-expr-thumb .et-img { width:58px; height:58px; border-radius:50%; border:2px solid transparent; background-color:#fff; background-repeat:no-repeat; margin:0 auto 4px; }
+    .sop-char-expr-thumb.on .et-img { border-color:var(--el-color-primary); }
+    .sop-char-expr-thumb span { font-size:10px; color:var(--el-text-color-secondary); }
+    .sop-char-params { display:grid; grid-template-columns:repeat(2,1fr); gap:8px 12px; margin-bottom:14px; }
+    .sop-char-params label { font-size:10px; color:var(--el-text-color-secondary); display:block; margin-bottom:2px; }
+    .sop-char-sheet-ref { border-radius:8px; overflow:hidden; border:1px solid var(--el-border-color-lighter); background:#fff; }
+    .sop-char-sheet-ref img { width:100%; max-height:140px; object-fit:contain; display:block; }
+    .sop-char-sheet-ref .sr-label { font-size:10px; padding:6px 8px; background:var(--el-fill-color-light); color:var(--el-text-color-secondary); }
+    .sop-char-multi-thumb { display:flex; gap:3px; justify-content:center; }
+    .sop-char-multi-thumb i { width:18px; height:24px; border-radius:3px; background-color:#fff; background-repeat:no-repeat; border:1px solid var(--el-border-color-lighter); display:block; }
+    /* SOP 场景工作室 · 九宫格摄影机矩阵 */
+    .sop-scene-studio { margin-top:14px; border:1px solid var(--el-border-color-lighter); border-radius:12px; overflow:hidden; background:var(--el-bg-color); }
+    .sop-scene-studio-head { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid var(--el-border-color-lighter); background:var(--el-fill-color-light); flex-wrap:wrap; gap:8px; }
+    .sop-scene-studio-body { display:grid; grid-template-columns:1fr 340px; gap:0; min-height:520px; }
+    .sop-scene-viewport-wrap { padding:16px; border-right:1px solid var(--el-border-color-lighter); display:flex; flex-direction:column; }
+    .sop-scene-viewport { flex:1; min-height:340px; border-radius:10px; position:relative; cursor:grab; user-select:none; overflow:hidden;
+      background:radial-gradient(ellipse at 50% 20%, rgba(0,180,255,.08) 0%, transparent 55%), linear-gradient(180deg,#121820 0%,#080a10 100%); }
+    .sop-scene-viewport.dragging { cursor:grabbing; }
+    .sop-scene-viewport-hint { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); font-size:11px; color:rgba(255,255,255,.4); pointer-events:none; white-space:nowrap; }
+    .sop-scene-viewport-stage { width:100%; height:100%; display:flex; align-items:center; justify-content:center; perspective:1000px; }
+    .sop-scene-viewport-model { width:min(420px,92%); height:min(300px,78%); transform-style:preserve-3d; transition:transform .08s linear; }
+    .sop-scene-viewport-face { width:100%; height:100%; border-radius:6px; background-color:#111; background-repeat:no-repeat; box-shadow:0 16px 48px rgba(0,0,0,.5); }
+    .sop-scene-viewport-meta { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+    .sop-scene-sidebar { padding:14px; overflow-y:auto; max-height:560px; }
+    .sop-scene-sidebar h5 { margin:0 0 8px; font-size:12px; font-weight:600; color:var(--el-text-color-secondary); }
+    .sop-scene-cam-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-bottom:14px; }
+    .sop-scene-cam-cell { aspect-ratio:4/3; border-radius:6px; border:2px solid transparent; cursor:pointer; background-color:#111; background-repeat:no-repeat; position:relative; overflow:hidden; transition:border-color .2s; }
+    .sop-scene-cam-cell.on { border-color:var(--el-color-primary); box-shadow:0 0 0 1px var(--el-color-primary); }
+    .sop-scene-cam-cell .cc-label { position:absolute; bottom:0; left:0; right:0; font-size:9px; padding:3px 4px; background:rgba(0,0,0,.72); color:rgba(255,255,255,.85); text-align:center; line-height:1.3; }
+    .sop-scene-cam-cell.hero::after { content:'英雄'; position:absolute; top:4px; right:4px; font-size:9px; padding:1px 5px; border-radius:4px; background:var(--el-color-warning); color:#000; font-weight:700; }
+    .sop-scene-prompt-block { font-size:11px; line-height:1.65; color:var(--el-text-color-secondary); padding:10px 12px; border-radius:8px; background:var(--el-fill-color-light); border:1px solid var(--el-border-color-lighter); margin-bottom:12px; max-height:100px; overflow-y:auto; }
+    .sop-scene-board { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; border-radius:8px; overflow:hidden; border:1px solid var(--el-border-color-lighter); background:#000; margin-bottom:12px; }
+    .sop-scene-board-cell { aspect-ratio:4/3; background-color:#111; background-repeat:no-repeat; position:relative; }
+    .sop-scene-board-cell span { position:absolute; bottom:0; left:0; right:0; font-size:8px; padding:2px 3px; background:rgba(0,0,0,.75); color:rgba(255,255,255,.8); text-align:center; }
+    .sop-scene-params { display:grid; grid-template-columns:repeat(2,1fr); gap:8px 12px; margin-bottom:12px; }
+    .sop-scene-params label { font-size:10px; color:var(--el-text-color-secondary); display:block; margin-bottom:2px; }
+    .sop-scene-multi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; width:54px; margin:0 auto; }
+    .sop-scene-multi-grid i { aspect-ratio:4/3; border-radius:2px; background-color:#111; background-repeat:no-repeat; border:1px solid var(--el-border-color-lighter); display:block; }
+    .sop-summary-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin-top:12px; }
+    .sop-summary-item { padding:12px; border-radius:8px; border:1px solid var(--el-border-color-lighter); font-size:12px; }
+    .sop-summary-item b { display:block; font-size:13px; margin-bottom:6px; }
+    .sop-canvas-import { margin-top:16px; }
+    .sop-canvas-import .node { position:absolute; }
     /* kanban */
     .kanban { display:flex; gap:12px; overflow-x:auto; padding-bottom:8px; }
     .kb-col { min-width:196px; background: var(--el-fill-color-light); border-radius:10px; padding:10px; flex-shrink:0; }
@@ -1113,6 +1214,12 @@
       .prompt-cat-tabs { gap: 4px 16px; }
       .prompt-cat-tabs button { font-size: 13px; }
       .cover-prompt-group-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .sop-char-studio-body { grid-template-columns: 1fr; }
+      .sop-char-viewport-wrap { border-right: none; border-bottom: 1px solid var(--el-border-color-lighter); }
+      .sop-char-params { grid-template-columns: 1fr; }
+      .sop-scene-studio-body { grid-template-columns: 1fr; }
+      .sop-scene-viewport-wrap { border-right: none; border-bottom: 1px solid var(--el-border-color-lighter); }
+      .sop-scene-params { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 860px) {
@@ -2068,7 +2175,7 @@
             <h2>最近项目</h2>
             <div class="proj-pills">
               <button class="pill" :class="{on: projTab==='film'}" @click="projTab='film'">自由画布</button>
-              <button class="pill" :class="{on: projTab==='sop'}" @click="projTab='sop'">SOP画布模式</button>
+              <button class="pill" :class="{on: projTab==='sop'}" @click="projTab='sop'">SOP画布</button>
               <button class="pill" :class="{on: projTab==='writing'}" @click="projTab='writing'">写作</button>
               <button class="pill" :class="{on: projTab==='script'}" @click="projTab='script'">剧本</button>
             </div>
@@ -2153,52 +2260,332 @@
         <div class="fusion-hint">{{ canvasSopOnly ? '大作联盟「选题→风格→剧本→分镜→人物→场景→合成视频」严格流水线 · 当前项目：P001 雨棚名单' : '融合说明：大作联盟「选题→风格→剧本→分镜→人物→场景→合成视频」严格流水线作为「引导模式」融入；产物即节点，可切到自由画布精修。当前项目：P001 雨棚名单 · 大作联盟21章正式试跑。' }}</div>
 
         <div v-if="canvasSopOnly || canvasMode==='sop'">
+          <!-- SOP 完成 · 带入画布 -->
+          <div v-if="sopEnteredCanvas" class="card">
+            <div class="page-title" style="margin-bottom:12px;">
+              <div><h2 style="margin:0;font-size:18px;">SOP 产物已注入画布</h2>
+                <div class="desc">导演视角分镜 + 原画师级人物/场景一致性 · 可继续节点编排与视频合成</div></div>
+              <el-button @click="sopEnteredCanvas=false;sopActive=6">返回 SOP 流水线</el-button>
+            </div>
+            <div class="canvas-wrap sop-canvas-import" style="height:calc(100vh - 280px);">
+              <div class="palette">
+                <div style="font-size:12px;font-weight:600;margin-bottom:8px;">SOP 注入节点</div>
+                <div class="p">📋 选题 · {{ sopConfirmedTopicTitle }}</div>
+                <div class="p">🎨 风格 · {{ sopConfirmedStyleName }}</div>
+                <div class="p">📄 剧本 · {{ sopScriptScenes.length }} 场</div>
+                <div class="p">🎞️ 分镜 · {{ sopStoryboardRows.length }} 镜</div>
+                <div class="p">👤 人物 · {{ sopCharacterRows.length }} 角色</div>
+                <div class="p">🏙️ 场景 · {{ sopSceneRows.length }} 场景</div>
+              </div>
+              <div class="node" style="left:200px;top:36px;"><div class="nh" style="background:#7b6cf6;">选题</div><div class="nb">{{ sopConfirmedTopicTitle }}</div></div>
+              <div class="node" style="left:380px;top:36px;"><div class="nh" style="background:#e17055;">风格</div><div class="nb">{{ sopConfirmedStyleName }}</div></div>
+              <div class="node" style="left:560px;top:36px;"><div class="nh" style="background:#00b894;">剧本</div><div class="nb">{{ sopScriptScenes.length }} 场 · 写作模式产物</div></div>
+              <div class="node" style="left:200px;top:180px;"><div class="nh" style="background:#0984e3;">分镜表</div><div class="nb">{{ sopStoryboardRows.length }} 镜 · 导演设计</div></div>
+              <div class="node" style="left:380px;top:180px;"><div class="nh" style="background:#fdcb6e;color:#333;">人物一致性</div><div class="nb">{{ sopCharacterRows.length }} 角色 · 3D定点</div></div>
+              <div class="node" style="left:560px;top:180px;"><div class="nh" style="background:#6c5ce7;">场景一致性</div><div class="nb">{{ sopSceneRows.length }} 场景 · 参考图绑定</div></div>
+              <div class="node" style="left:740px;top:108px;"><div class="nh" style="background:#d63031;">合成视频</div><div class="nb">首尾帧 · 图生视频 · 调度台</div></div>
+            </div>
+          </div>
+
+          <template v-else>
           <div class="card">
             <el-steps :active="sopActive" finish-status="success" align-center>
               <el-step v-for="(s,i) in sopSteps" :key="i" :title="s" />
             </el-steps>
             <div class="sop-stage-body">
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <div><b>当前阶段：{{ sopSteps[sopActive] }}</b><el-tag size="small" type="warning" style="margin-left:10px;">严格流水线 · 前序未完成锁定后序</el-tag></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+                <div><b>当前阶段：{{ sopSteps[sopActive] }}</b>
+                  <el-tag size="small" type="warning" style="margin-left:10px;">{{ sopStageHint }}</el-tag></div>
                 <div><el-tag size="small" effect="plain">status: running</el-tag><el-tag size="small" type="info" effect="plain" style="margin-left:6px;">failed_step: 无</el-tag></div>
               </div>
 
-              <!-- 步骤一 · 选题（保持大作联盟选题功能全部数据 + 影片类型选择） -->
-              <div v-if="sopActive===0" style="margin-top:16px;">
-                <div style="font-size:13px;font-weight:600;margin-bottom:8px;">🎬 影片类型</div>
-                <el-radio-group :model-value="filmType" style="margin-bottom:16px;">
-                  <el-radio-button label="serial" @click="pickFilmType('serial')">连载微剧本</el-radio-button>
-                  <el-radio-button label="film" @click="pickFilmType('film')">微电影</el-radio-button>
-                  <el-radio-button label="general" @click="pickFilmType('general')">通用影片</el-radio-button>
+              <!-- ① 选题 -->
+              <div v-if="sopActive===0" class="sop-sec">
+                <div class="sop-sec-head"><h4>① 选择影片类型</h4></div>
+                <el-radio-group v-model="sopFilmType" size="default">
+                  <el-radio-button v-for="ft in sopFilmTypes" :key="ft.key" :label="ft.key">{{ ft.label }}</el-radio-button>
                 </el-radio-group>
 
-                <div class="grid-3" style="margin-bottom:16px;">
-                  <div class="card" style="margin:0;">
-                    <h3>🔥 爆款众筹（showcase-crowd）</h3>
-                    <div v-for="c in crowdfund" :key="c.topic" style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;">
-                      <el-tag size="small" effect="plain" style="cursor:pointer;" @click="selectedTopic=c.topic">{{ c.topic }}</el-tag>
-                      <span style="color:var(--el-text-color-secondary);font-size:12px;">众筹 {{ c.backers }} 人</span>
-                      <el-progress :percentage="c.heat" :stroke-width="6" :show-text="false" style="flex:1;" />
-                    </div>
+                <div class="sop-sec">
+                  <div class="sop-sec-head"><h4>② 选择题材</h4><span class="hint">可多选 · 支持自定义</span></div>
+                  <div class="sop-tag-grid">
+                    <el-tag v-for="g in sopAllGenres" :key="g" :effect="sopSelectedGenres.includes(g)?'dark':'plain'" size="large" @click="toggleSopGenre(g)">{{ g }}</el-tag>
                   </div>
-                  <div class="card" style="margin:0;grid-column:span 2;">
-                    <h3>📚 题材库（当前类型：{{ filmTypeLabel }}）</h3>
-                    <el-tag v-for="t in currentTopics" :key="t" size="large" :effect="selectedTopic===t?'dark':'plain'"
-                      style="margin:6px 8px 6px 0;cursor:pointer;" @click="selectedTopic=t">{{ t }}</el-tag>
-                    <div style="font-size:12px;color:var(--el-text-color-secondary);margin-top:8px;">赛道：逆袭 / 战神 / 末世 / 赛博 · 切换类型联动切换可选选题（与大作联盟影片切换一致）</div>
+                  <div class="sop-custom-row">
+                    <el-input v-model="sopCustomGenreInput" placeholder="自定义题材，回车或点击添加" size="small" style="width:260px;" @keyup.enter="addSopCustomGenre" />
+                    <el-button size="small" @click="addSopCustomGenre">添加题材</el-button>
+                    <el-button type="primary" size="small" @click="generateSopTopics"><el-icon><MagicStick /></el-icon> 生成选题</el-button>
                   </div>
                 </div>
-                <el-alert type="success" :closable="false" show-icon
-                  :title="'已选选题：《' + selectedTopic + '》 · 类型：' + filmTypeLabel" style="margin-bottom:14px;" />
+
+                <div v-if="sopTopicResults.length" class="sop-result-panel">
+                  <div class="rp-head"><b>③ 选题结果</b><span style="font-size:12px;color:var(--el-text-color-secondary);">点击卡片选中 · 默认 Demo 数据</span></div>
+                  <div class="sop-topic-cards">
+                    <div v-for="t in sopTopicResults" :key="t.id" class="sop-topic-card" :class="{on:sopSelectedTopicId===t.id}" @click="sopSelectedTopicId=t.id">
+                      <div class="tc-title">《{{ t.title }}》</div>
+                      <div class="tc-hook">{{ t.hook }}</div>
+                      <div style="margin-top:8px;"><el-tag size="small" effect="plain">{{ t.genre }}</el-tag> <el-tag size="small" type="info" effect="plain">{{ t.filmType }}</el-tag></div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <!-- 其他步骤 · 通用执行体 -->
-              <el-alert v-else style="margin:14px 0;" type="info" :closable="false" title="Agent 执行中：产物落标准目录 01_剧本 / 02_分镜 / 03_人物 / 04_场景 / 05_质检 / 06_风格（plannedChapters: 21）" />
+              <!-- ② 风格 -->
+              <div v-else-if="sopActive===1" class="sop-sec">
+                <div class="sop-sec-head"><h4>选择风格类型</h4><span class="hint">原画师视角 · 可多选 · 支持自定义</span></div>
+                <div class="sop-tag-grid">
+                  <el-tag v-for="s in sopAllStyles" :key="s" :effect="sopSelectedStyles.includes(s)?'dark':'plain'" size="default" @click="toggleSopStyle(s)">{{ s }}</el-tag>
+                </div>
+                <div class="sop-custom-row">
+                  <el-input v-model="sopCustomStyleInput" placeholder="自定义风格" size="small" style="width:260px;" @keyup.enter="addSopCustomStyle" />
+                  <el-button size="small" @click="addSopCustomStyle">添加风格</el-button>
+                  <el-button type="primary" size="small" @click="generateSopStyles"><el-icon><Picture /></el-icon> 生成风格图</el-button>
+                </div>
+                <div v-if="sopStyleResults.length" class="sop-result-panel">
+                  <div class="rp-head"><b>风格预览结果</b><span style="font-size:12px;color:var(--el-text-color-secondary);">点击选中主风格</span></div>
+                  <div class="sop-style-grid">
+                    <div v-for="s in sopStyleResults" :key="s.id" class="sop-style-card" :class="{on:sopSelectedStyleId===s.id}" @click="sopSelectedStyleId=s.id">
+                      <img :src="s.img" :alt="s.name" />
+                      <div class="sc-meta"><b>{{ s.name }}</b><div style="color:var(--el-text-color-secondary);margin-top:2px;">{{ s.desc }}</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-              <div style="display:flex;gap:12px;align-items:center;">
+              <!-- ③ 剧本 -->
+              <div v-else-if="sopActive===2" class="sop-sec">
+                <div class="sop-sec-head"><h4>生成剧本</h4><span class="hint">基于选题《{{ sopConfirmedTopicTitle }}》+ 风格「{{ sopConfirmedStyleName }}」</span></div>
+                <div class="grid-2" style="gap:12px;margin-bottom:12px;">
+                  <el-input v-model="sopScriptCustomReq" type="textarea" :rows="2" placeholder="自定义要求（非必填）例：三幕结构、每集 3 分钟、强化悬疑反转" />
+                  <el-input v-model="sopScriptCustomPrompt" type="textarea" :rows="2" placeholder="自定义提示词（非必填）例：对白简洁、镜头感强、适合竖屏" />
+                </div>
+                <el-button type="primary" @click="generateSopScript"><el-icon><EditPen /></el-icon> 生成剧本</el-button>
+                <div v-if="sopScriptGenerated" class="sop-script-wrap">
+                  <div class="sw-head">剧本写作模式 · {{ sopScriptScenes[0] && sopScriptScenes[0].label.split('·')[0].trim() || '场次' }}</div>
+                  <div class="sop-script-body">
+                    <div class="sop-script-nav">
+                      <div v-for="sc in sopScriptScenes" :key="sc.id" class="sn-item" :class="{on:sopScriptSceneId===sc.id}" @click="sopScriptSceneId=sc.id">{{ sc.label }}</div>
+                    </div>
+                    <div class="sop-script-editor">{{ sopActiveScriptText }}</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ④ 分镜 -->
+              <div v-else-if="sopActive===3" class="sop-sec">
+                <div class="sop-sec-head"><h4>生成分镜</h4><span class="hint">导演角色设计 · 可在给定基础上专业补充</span></div>
+                <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px;">
+                  <span style="font-size:13px;">分镜数量</span>
+                  <el-input-number v-model="sopStoryboardCount" :min="1" :max="60" size="small" />
+                  <el-button type="primary" size="small" @click="generateSopStoryboard"><el-icon><Film /></el-icon> 生成分镜表</el-button>
+                  <el-tag size="small" type="warning" effect="plain">导演补充：景别变化、手持/固定、音效留白</el-tag>
+                </div>
+                <div v-if="sopStoryboardGenerated" class="sop-excel">
+                  <el-table :data="sopStoryboardRows" border stripe size="small" max-height="360">
+                    <el-table-column prop="seq" label="序号" width="60" align="center" />
+                    <el-table-column prop="chars" label="人物" width="100" />
+                    <el-table-column prop="props" label="道具" width="120" />
+                    <el-table-column prop="duration" label="时长" width="70" align="center" />
+                    <el-table-column prop="content" label="内容" min-width="280" show-overflow-tooltip />
+                  </el-table>
+                </div>
+              </div>
+
+              <!-- ⑤ 人物 -->
+              <div v-else-if="sopActive===4" class="sop-sec">
+                <div class="sop-sec-head"><h4>人物一致性 · 角色设定工作室</h4><span class="hint">原画师/3D 角色设计 · 三视图 + 表情参考 + 鼠标拖动预览</span></div>
+                <el-button type="primary" size="small" @click="generateSopCharacters" style="margin-bottom:12px;"><el-icon><User /></el-icon> 从剧本/分镜提取并生成人物设定</el-button>
+                <div v-if="sopCharactersGenerated" class="sop-excel">
+                  <el-table :data="sopCharacterRows" border stripe size="small" max-height="220">
+                    <el-table-column prop="seq" label="序号" width="55" align="center" />
+                    <el-table-column prop="name" label="人名" width="80" />
+                    <el-table-column prop="role" label="角色" width="90" />
+                    <el-table-column prop="shots" label="出现分镜" width="90" />
+                    <el-table-column prop="desc" label="角色描述" min-width="140" show-overflow-tooltip />
+                    <el-table-column label="参考图" width="70" align="center">
+                      <template #default="s"><img v-if="s.row.refImg" :src="s.row.refImg" class="cell-img" /><el-button v-else link type="primary" size="small" @click="mockSopRefUpload(s.row,'char')">上传</el-button></template>
+                    </el-table-column>
+                    <el-table-column label="设定图" width="90" align="center">
+                      <template #default="s">
+                        <div class="sop-char-multi-thumb">
+                          <i v-for="vk in ['front','side','back']" :key="vk" :style="sopCharThumbStyle(s.row, s.row.views[vk])"></i>
+                        </div>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="3D" width="70" align="center">
+                      <template #default="s"><el-button link type="primary" size="small" :class="{ 'is-active': sopCharAdjustIdx===s.$index }" @click="selectSopCharStudio(s.$index)">调整</el-button></template>
+                    </el-table-column>
+                  </el-table>
+
+                  <div v-if="sopActiveChar" class="sop-char-studio">
+                    <div class="sop-char-studio-head">
+                      <div><b>🎭 {{ sopActiveChar.name }}</b> <el-tag size="small" effect="plain" style="margin-left:6px;">{{ sopActiveChar.role }}</el-tag>
+                        <span style="font-size:12px;color:var(--el-text-color-secondary);margin-left:8px;">Yaw {{ sopCharPoseLabel.yaw }}° · Pitch {{ sopCharPoseLabel.pitch }}°</span></div>
+                      <div style="display:flex;gap:8px;">
+                        <el-button size="small" @click="resetSopChar3d(sopActiveChar)">重置 3D</el-button>
+                        <el-button size="small" type="primary" @click="lockSopCharPose(sopActiveChar)">锁定一致性</el-button>
+                      </div>
+                    </div>
+                    <div class="sop-char-studio-body">
+                      <div class="sop-char-viewport-wrap">
+                        <div class="sop-char-viewport" :class="{dragging:sopCharDrag.active}" @mousedown.prevent="sopCharDragStart($event)" @wheel.prevent="sopCharWheel($event)">
+                          <div class="sop-char-viewport-stage">
+                            <div class="sop-char-viewport-model" :style="sopCharModelTransform(sopActiveChar)">
+                              <div class="sop-char-viewport-face" :style="sopCharViewportFace(sopActiveChar)"></div>
+                            </div>
+                          </div>
+                          <div class="sop-char-viewport-hint">🖱 按住拖动旋转 · 滚轮缩放 · 专业角色预览视口</div>
+                        </div>
+                        <div class="sop-char-viewport-meta">
+                          <el-tag size="small" effect="plain">主光 {{ sopActiveChar.pose3d.lightAz }}°</el-tag>
+                          <el-tag size="small" effect="plain">仰角 {{ sopActiveChar.pose3d.lightEl }}°</el-tag>
+                          <el-tag size="small" effect="plain">焦距 {{ sopActiveChar.pose3d.focal }}mm</el-tag>
+                          <el-tag size="small" type="success" effect="plain" v-if="sopActiveChar.activeView!=='free'">{{ sopActiveChar.views[sopActiveChar.activeView]?.label || '自由视角' }}</el-tag>
+                          <el-tag size="small" type="warning" effect="plain" v-if="sopActiveChar.activeExpr!==null">{{ sopActiveChar.expressions[sopActiveChar.activeExpr]?.label }}</el-tag>
+                        </div>
+                      </div>
+                      <div class="sop-char-sidebar">
+                        <h5>三视图 · Orthographic</h5>
+                        <div class="sop-char-views-grid">
+                          <div v-for="(v, vk) in sopActiveChar.views" :key="vk" class="sop-char-view-thumb" :class="{on:sopActiveChar.activeView===vk && sopActiveChar.activeExpr===null}" :style="sopCharThumbStyle(sopActiveChar, v)" @click="selectSopCharView(sopActiveChar, vk)">
+                            <span>{{ v.label }}</span>
+                          </div>
+                        </div>
+                        <h5>表情参考 · Expression Sheet</h5>
+                        <div class="sop-char-expr-row">
+                          <div v-for="(ex, ei) in sopActiveChar.expressions" :key="ei" class="sop-char-expr-thumb" :class="{on:sopActiveChar.activeExpr===ei}" @click="selectSopCharExpr(sopActiveChar, ei)">
+                            <div class="et-img" :style="sopCharThumbStyle(sopActiveChar, ex)"></div>
+                            <span>{{ ex.label }}</span>
+                          </div>
+                        </div>
+                        <h5>3D 设计参数 · Rig & Camera</h5>
+                        <div class="sop-char-params">
+                          <div><label>水平旋转 Yaw</label><el-slider v-model="sopActiveChar.pose3d.yaw" :min="-180" :max="180" size="small" @input="sopActiveChar.activeView='free';sopActiveChar.activeExpr=null" /></div>
+                          <div><label>俯仰 Pitch</label><el-slider v-model="sopActiveChar.pose3d.pitch" :min="-45" :max="45" size="small" @input="sopActiveChar.activeView='free';sopActiveChar.activeExpr=null" /></div>
+                          <div><label>翻滚 Roll</label><el-slider v-model="sopActiveChar.pose3d.roll" :min="-30" :max="30" size="small" /></div>
+                          <div><label>缩放 Zoom</label><el-slider v-model="sopActiveChar.pose3d.zoom" :min="0.6" :max="1.6" :step="0.05" size="small" /></div>
+                          <div><label>主光方位 Light Az</label><el-slider v-model="sopActiveChar.pose3d.lightAz" :min="0" :max="360" size="small" /></div>
+                          <div><label>主光仰角 Light El</label><el-slider v-model="sopActiveChar.pose3d.lightEl" :min="0" :max="90" size="small" /></div>
+                          <div><label>相机距离 Cam Dist</label><el-slider v-model="sopActiveChar.pose3d.camDist" :min="20" :max="100" size="small" /></div>
+                          <div><label>焦距 Focal</label><el-slider v-model="sopActiveChar.pose3d.focal" :min="35" :max="135" size="small" /></div>
+                        </div>
+                        <h5>生成结果参考 · Character Sheet</h5>
+                        <div class="sop-char-sheet-ref">
+                          <img :src="sopActiveChar.sheetImg" :alt="sopActiveChar.name + ' 设定图'" />
+                          <div class="sr-label">三视图 + 表情参考 · 专业角色设定稿（Demo）</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ⑥ 场景 -->
+              <div v-else-if="sopActive===5" class="sop-sec">
+                <div class="sop-sec-head"><h4>场景一致性 · ArchViz 摄影机矩阵</h4><span class="hint">九宫格机位 · 50mm 统一参数 · 8K HDR · 鼠标拖动预览</span></div>
+                <el-button type="primary" size="small" @click="generateSopScenes" style="margin-bottom:12px;"><el-icon><OfficeBuilding /></el-icon> 提取并生成场景一致性（九宫格）</el-button>
+                <div v-if="sopScenesGenerated" class="sop-excel">
+                  <el-table :data="sopSceneRows" border stripe size="small" max-height="220">
+                    <el-table-column prop="seq" label="序号" width="55" align="center" />
+                    <el-table-column prop="name" label="场景名" width="100" />
+                    <el-table-column prop="shots" label="出现分镜" width="90" />
+                    <el-table-column prop="desc" label="场景描述" min-width="140" show-overflow-tooltip />
+                    <el-table-column label="参考图" width="70" align="center">
+                      <template #default="s"><img v-if="s.row.refImg" :src="s.row.refImg" class="cell-img" /><el-button v-else link type="primary" size="small" @click="mockSopRefUpload(s.row,'scene')">上传</el-button></template>
+                    </el-table-column>
+                    <el-table-column label="九宫格" width="72" align="center">
+                      <template #default="s">
+                        <div class="sop-scene-multi-grid">
+                          <i v-for="(c,ci) in (s.row.cameraGrid||[]).slice(0,9)" :key="ci" :style="sopSceneThumbStyle(s.row, c)"></i>
+                        </div>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="调整" width="70" align="center">
+                      <template #default="s"><el-button link type="primary" size="small" :class="{ 'is-active': sopSceneAdjustIdx===s.$index }" @click="selectSopSceneStudio(s.$index)">调整</el-button></template>
+                    </el-table-column>
+                  </el-table>
+
+                  <div v-if="sopActiveScene" class="sop-scene-studio">
+                    <div class="sop-scene-studio-head">
+                      <div><b>🏙️ {{ sopActiveScene.name }}</b>
+                        <el-tag size="small" effect="plain" style="margin-left:6px;">50mm · ArchViz</el-tag>
+                        <span style="font-size:12px;color:var(--el-text-color-secondary);margin-left:8px;">Yaw {{ sopScenePoseLabel.yaw }}° · Pitch {{ sopScenePoseLabel.pitch }}° · {{ sopActiveCamLabel }}</span></div>
+                      <div style="display:flex;gap:8px;">
+                        <el-button size="small" @click="resetSopScene3d(sopActiveScene)">重置机位</el-button>
+                        <el-button size="small" type="primary" @click="lockSopScenePose(sopActiveScene)">锁定一致性</el-button>
+                      </div>
+                    </div>
+                    <div class="sop-scene-studio-body">
+                      <div class="sop-scene-viewport-wrap">
+                        <div class="sop-scene-viewport" :class="{dragging:sopSceneDrag.active}" @mousedown.prevent="sopSceneDragStart($event)" @wheel.prevent="sopSceneWheel($event)">
+                          <div class="sop-scene-viewport-stage">
+                            <div class="sop-scene-viewport-model" :style="sopSceneModelTransform(sopActiveScene)">
+                              <div class="sop-scene-viewport-face" :style="sopSceneViewportFace(sopActiveScene)"></div>
+                            </div>
+                          </div>
+                          <div class="sop-scene-viewport-hint">🖱 拖动旋转环境 · 滚轮缩放 · 50mm 统一焦段预览</div>
+                        </div>
+                        <div class="sop-scene-viewport-meta">
+                          <el-tag size="small" effect="plain">50mm</el-tag>
+                          <el-tag size="small" effect="plain">HDR 8K</el-tag>
+                          <el-tag size="small" effect="plain">PBR</el-tag>
+                          <el-tag size="small" type="success" effect="plain">{{ sopActiveCamLabel }}</el-tag>
+                        </div>
+                        <h5 style="margin:14px 0 8px;font-size:12px;color:var(--el-text-color-secondary);">ArchViz Presentation Board · 生成结果九宫格</h5>
+                        <div class="sop-scene-board">
+                          <div v-for="(c,ci) in sopActiveScene.cameraGrid" :key="c.key" class="sop-scene-board-cell" :style="sopSceneThumbStyle(sopActiveScene, c)" @click="selectSopSceneCam(sopActiveScene, c.key)">
+                            <span>{{ c.label }}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="sop-scene-sidebar">
+                        <h5>【九宫格摄影机矩阵】</h5>
+                        <div class="sop-scene-cam-grid">
+                          <div v-for="(c,ci) in sopActiveScene.cameraGrid" :key="c.key" class="sop-scene-cam-cell" :class="{on:sopActiveScene.activeCam===c.key && !sopActiveScene.activeCamFree, hero:ci===8}" :style="sopSceneThumbStyle(sopActiveScene, c)" :title="c.desc" @click="selectSopSceneCam(sopActiveScene, c.key)">
+                            <span class="cc-label">{{ c.label }}</span>
+                          </div>
+                        </div>
+                        <h5>【摄影机参数】</h5>
+                        <div class="sop-scene-prompt-block">{{ sopSceneCameraParamsText }}</div>
+                        <div class="sop-scene-params">
+                          <div><label>焦段 Focal</label><el-slider v-model="sopActiveScene.pose3d.focal" :min="35" :max="85" :step="5" size="small" disabled /></div>
+                          <div><label>景深 DOF</label><el-slider v-model="sopActiveScene.pose3d.dof" :min="1.4" :max="16" :step="0.5" size="small" /></div>
+                          <div><label>水平 Yaw</label><el-slider v-model="sopActiveScene.pose3d.yaw" :min="-180" :max="180" size="small" @input="sopActiveScene.activeCamFree=true" /></div>
+                          <div><label>俯仰 Pitch</label><el-slider v-model="sopActiveScene.pose3d.pitch" :min="-60" :max="30" size="small" @input="sopActiveScene.activeCamFree=true" /></div>
+                          <div><label>翻滚 Roll</label><el-slider v-model="sopActiveScene.pose3d.roll" :min="-15" :max="15" size="small" /></div>
+                          <div><label>缩放 Zoom</label><el-slider v-model="sopActiveScene.pose3d.zoom" :min="0.7" :max="1.5" :step="0.05" size="small" /></div>
+                          <div><label>曝光 EV</label><el-slider v-model="sopActiveScene.pose3d.exposure" :min="-2" :max="2" :step="0.1" size="small" /></div>
+                          <div><label>白平衡 K</label><el-slider v-model="sopActiveScene.pose3d.wb" :min="3200" :max="7500" :step="100" size="small" /></div>
+                        </div>
+                        <h5>【画面质量】</h5>
+                        <div class="sop-scene-prompt-block">{{ sopSceneQualityPromptText }}</div>
+                        <div v-if="sopActiveCamDesc" class="sop-scene-prompt-block" style="max-height:none;border-color:var(--el-color-primary-light-7);">
+                          <b style="color:var(--el-text-color-primary);">{{ sopActiveCamLabel }}</b><br>{{ sopActiveCamDesc }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ⑦ 合成视频 -->
+              <div v-else-if="sopActive===6" class="sop-sec">
+                <div class="sop-sec-head"><h4>生成视频 · 进入画布</h4><span class="hint">将全部 SOP 产物注入自由节点画布</span></div>
+                <el-alert type="success" :closable="false" show-icon title="流水线产物已就绪，可一键带入画布继续视频合成与精修" style="margin-bottom:14px;" />
+                <div class="sop-summary-grid">
+                  <div class="sop-summary-item"><b>选题</b>{{ sopConfirmedTopicTitle }} · {{ sopFilmTypeLabel }}</div>
+                  <div class="sop-summary-item"><b>风格</b>{{ sopConfirmedStyleName }}</div>
+                  <div class="sop-summary-item"><b>剧本</b>{{ sopScriptScenes.length }} 场</div>
+                  <div class="sop-summary-item"><b>分镜</b>{{ sopStoryboardRows.length }} 镜</div>
+                  <div class="sop-summary-item"><b>人物</b>{{ sopCharacterRows.length }} 角色 · 记忆锁定</div>
+                  <div class="sop-summary-item"><b>场景</b>{{ sopSceneRows.length }} 场景 · 参考绑定</div>
+                </div>
+              </div>
+
+              <div style="display:flex;gap:12px;align-items:center;margin-top:18px;flex-wrap:wrap;">
                 <el-button type="primary" @click="nextSop">
-                  <el-icon><Select v-if="sopActive===0" /><VideoPlay v-else /></el-icon>
-                  {{ sopActive===0 ? '确认选题单 · 进入风格' : '确认并进入下一阶段' }}
+                  <el-icon><Select v-if="sopActive===0" /><VideoPlay v-else-if="sopActive===6" /><ArrowRight v-else /></el-icon>
+                  {{ sopNextLabel }}
                 </el-button>
                 <el-button @click="prevSop" :disabled="sopActive===0">上一步</el-button>
                 <el-button type="warning" plain><el-icon><RefreshRight /></el-icon>失败重试 · 断点续跑</el-button>
@@ -2206,11 +2593,15 @@
               </div>
             </div>
           </div>
-          <div class="grid-3">
-            <div class="card"><h3>🎨 风格锁定</h3><div style="font-size:13px;color:var(--el-text-color-secondary)">555 风格 / 72 分类 / IP 大师库</div><el-tag size="small" style="margin:8px 6px 0 0;">现实</el-tag><el-tag size="small">武侠</el-tag><el-tag size="small">赛博</el-tag></div>
-            <div class="card"><h3>👤 人物一致性</h3><div style="font-size:13px;color:var(--el-text-color-secondary)">记忆锁定 · 参考图绑定</div><el-tag size="small" type="success" style="margin:8px 6px 0 0;">已锁定 3 角色</el-tag></div>
-            <div class="card"><h3>🏙️ 场景库</h3><div style="font-size:13px;color:var(--el-text-color-secondary)">锁定规则：缺一项不得进视频</div><el-progress :percentage="75" :stroke-width="8" style="margin-top:10px;" /></div>
+          <div v-if="!sopEnteredCanvas" class="grid-3">
+            <div class="card"><h3>🎨 风格锁定</h3><div style="font-size:13px;color:var(--el-text-color-secondary)">555 风格 / 72 分类 / IP 大师库</div>
+              <el-tag v-for="s in sopSelectedStyles.slice(0,3)" :key="s" size="small" style="margin:8px 6px 0 0;">{{ s }}</el-tag></div>
+            <div class="card"><h3>👤 人物一致性</h3><div style="font-size:13px;color:var(--el-text-color-secondary)">记忆锁定 · 参考图绑定 · 3D定点</div>
+              <el-tag size="small" type="success" style="margin:8px 6px 0 0;">已锁定 {{ sopCharacterRows.length }} 角色</el-tag></div>
+            <div class="card"><h3>🏙️ 场景库</h3><div style="font-size:13px;color:var(--el-text-color-secondary)">锁定规则：缺一项不得进视频</div>
+              <el-progress :percentage="sopSceneProgress" :stroke-width="8" style="margin-top:10px;" /></div>
           </div>
+          </template>
         </div>
 
         <div v-else-if="!canvasSopOnly">
@@ -4014,6 +4405,7 @@
 <script src="tools-data.js"></script>
 <script src="wwds-script-data.js"></script>
 <script src="copyright-data.js"></script>
+<script src="sop-workflow-data.js"></script>
 <script src="page-req-specs.js"></script>
 <script>
   const { createApp } = Vue;
@@ -4059,6 +4451,39 @@
         canvasSopOnly: false,
         sopActive: 0,
         sopSteps: ['选题','风格','剧本','分镜','人物','场景','合成视频'],
+        sopEnteredCanvas: false,
+        sopFilmTypes: (window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.filmTypes) || [],
+        sopGenreTags: (window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.genreTags) || [],
+        sopStyleTags: (window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.styleTags) || [],
+        sopFilmType: 'film',
+        sopSelectedGenres: ['悬疑'],
+        sopCustomGenreInput: '',
+        sopCustomGenres: [],
+        sopTopicResults: JSON.parse(JSON.stringify((window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.demoTopics) || [])),
+        sopSelectedTopicId: 1,
+        sopSelectedStyles: ['赛博朋克'],
+        sopCustomStyleInput: '',
+        sopCustomStyles: [],
+        sopStyleResults: JSON.parse(JSON.stringify((window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.demoStyleImages) || [])),
+        sopSelectedStyleId: 1,
+        sopScriptCustomReq: '',
+        sopScriptCustomPrompt: '',
+        sopScriptScenes: JSON.parse(JSON.stringify((window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.demoScript && window.SOP_WORKFLOW_DATA.demoScript.scenes) || [])),
+        sopScriptSceneId: 's1',
+        sopScriptGenerated: true,
+        sopStoryboardCount: 6,
+        sopStoryboardRows: JSON.parse(JSON.stringify((window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.demoStoryboard) || [])),
+        sopStoryboardGenerated: true,
+        sopCharacterRows: JSON.parse(JSON.stringify((window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.demoCharacters) || [])),
+        sopCharactersGenerated: true,
+        sopCharAdjustIdx: 0,
+        sopCharDrag: { active: false, startX: 0, startY: 0, startYaw: 0, startPitch: 0, idx: 0 },
+        sopSceneRows: JSON.parse(JSON.stringify((window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.demoScenes) || [])),
+        sopScenesGenerated: true,
+        sopSceneAdjustIdx: 0,
+        sopSceneDrag: { active: false, startX: 0, startY: 0, startYaw: 0, startPitch: 0, idx: 0 },
+        sopSceneCameraParamsText: (window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.sceneCameraParamsText) || '',
+        sopSceneQualityPromptText: (window.SOP_WORKFLOW_DATA && window.SOP_WORKFLOW_DATA.sceneQualityPromptText) || '',
         creationMode: 'infinite',
         filmType: 'serial',
         selectedTopic: '一夜封神',
@@ -4549,6 +4974,64 @@
       Sunny() { return ElementPlusIconsVue.Sunny; },
       currentTopics() { return this.topicsByType[this.filmType] || []; },
       filmTypeLabel() { return { serial:'连载微剧本', film:'微电影', general:'通用影片' }[this.filmType] || ''; },
+      sopAllGenres() { return [...this.sopGenreTags, ...this.sopCustomGenres]; },
+      sopAllStyles() { return [...this.sopStyleTags, ...this.sopCustomStyles]; },
+      sopFilmTypeLabel() {
+        const ft = this.sopFilmTypes.find(f => f.key === this.sopFilmType);
+        return ft ? ft.label : '';
+      },
+      sopConfirmedTopicTitle() {
+        const t = this.sopTopicResults.find(x => x.id === this.sopSelectedTopicId);
+        return t ? t.title : '未选题';
+      },
+      sopConfirmedStyleName() {
+        const s = this.sopStyleResults.find(x => x.id === this.sopSelectedStyleId);
+        return s ? s.name : (this.sopSelectedStyles[0] || '未选风格');
+      },
+      sopActiveScriptText() {
+        const sc = this.sopScriptScenes.find(s => s.id === this.sopScriptSceneId);
+        return sc ? sc.text : '';
+      },
+      sopStageHint() {
+        const hints = ['选题策划 · 类型→题材→生成','原画师选风 · 风格图预览','编剧模式 · 场次剧本','导演分镜 · Excel 表','人物记忆锁定 · 3D定点','场景一致性 · 参考图绑定','注入画布 · 视频合成'];
+        return hints[this.sopActive] || '严格流水线';
+      },
+      sopNextLabel() {
+        if (this.sopActive === 0) return '确认选题 · 进入风格';
+        if (this.sopActive === 6) return '进入画布 · 带入全部产物';
+        return '确认并进入下一阶段';
+      },
+      sopSceneProgress() {
+        if (!this.sopSceneRows.length) return 0;
+        const done = this.sopSceneRows.filter(r => r.cameraGrid && r.cameraGrid.length >= 9).length;
+        return Math.round((done / this.sopSceneRows.length) * 100);
+      },
+      sopActiveChar() {
+        return this.sopCharacterRows[this.sopCharAdjustIdx] || null;
+      },
+      sopCharPoseLabel() {
+        const p = this.sopActiveChar && this.sopActiveChar.pose3d;
+        return { yaw: Math.round((p && p.yaw) || 0), pitch: Math.round((p && p.pitch) || 0) };
+      },
+      sopActiveScene() {
+        return this.sopSceneRows[this.sopSceneAdjustIdx] || null;
+      },
+      sopScenePoseLabel() {
+        const p = this.sopActiveScene && this.sopActiveScene.pose3d;
+        return { yaw: Math.round((p && p.yaw) || 0), pitch: Math.round((p && p.pitch) || 0) };
+      },
+      sopActiveCamLabel() {
+        const row = this.sopActiveScene;
+        if (!row || !row.cameraGrid) return '自由视角';
+        const cam = row.cameraGrid.find(c => c.key === row.activeCam);
+        return cam ? cam.label : '自由视角';
+      },
+      sopActiveCamDesc() {
+        const row = this.sopActiveScene;
+        if (!row || !row.cameraGrid) return '';
+        const cam = row.cameraGrid.find(c => c.key === row.activeCam);
+        return cam ? cam.desc : '';
+      },
       sbCurrentEpisode() {
         const eps = this.sbProject.episodes || [];
         return eps.find(ep => ep.id === this.sbEpisodeId) || eps[0] || null;
@@ -4580,7 +5063,7 @@
       },
       projCreateConfig() {
         if (this.projTab === 'film') return { label: '开始创作', mode: '无限自由画布', message: '打开小题大作现在的画布模式', link: 'canvas' };
-        if (this.projTab === 'sop') return { label: '开始创作', mode: 'SOP画布模式', message: '打开 SOP 画布创作模式', link: 'canvas', canvasMode: 'sop' };
+        if (this.projTab === 'sop') return { label: '开始创作', mode: 'SOP画布', message: '打开 SOP 画布创作', link: 'canvas', canvasMode: 'sop' };
         if (this.projTab === 'writing') return { label: '开始写作', mode: '写作模式', message: '使用小题大作现有的写作流程', link: 'writing', entryFrom: 'writing' };
         return { label: '开始写作', mode: '剧本模式', message: '使用小题大作现有的写作流程', link: 'writing', entryFrom: 'script' };
       },
@@ -4821,6 +5304,8 @@
     },
     beforeUnmount() {
       this.unbindPageReqDragListeners();
+      this.sopCharDragEnd();
+      this.sopSceneDragEnd();
     },
     updated() {
       if (this.active === 'copyright') this.$nextTick(() => this.updateCpRankNav());
@@ -5146,8 +5631,11 @@
       enterProjEntry() {
         const cfg = this.projCreateConfig;
         if (cfg.canvasMode) {
-          if (cfg.canvasMode === 'sop') this.sopActive = 0;
-          this.go(cfg.link, { sopOnly: true });
+          if (cfg.canvasMode === 'sop') {
+            this.sopActive = 0;
+            this.sopEnteredCanvas = false;
+          }
+          this.go(cfg.link, { sopOnly: cfg.canvasMode === 'sop' });
           return;
         }
         if (cfg.entryFrom) {
@@ -5168,7 +5656,326 @@
         this.createModeDialog = true;
       },
       toggleDark(v) { document.documentElement.classList.toggle('dark', v); },
-      nextSop() { if (this.sopActive < this.sopSteps.length - 1) this.sopActive++; ElementPlus.ElMessage.success('阶段已确认，进入下一阶段（消耗 🍿 25）'); },
+      toggleSopGenre(g) {
+        const i = this.sopSelectedGenres.indexOf(g);
+        if (i >= 0) this.sopSelectedGenres.splice(i, 1);
+        else this.sopSelectedGenres.push(g);
+      },
+      addSopCustomGenre() {
+        const v = this.sopCustomGenreInput.trim();
+        if (!v || this.sopAllGenres.includes(v)) return;
+        this.sopCustomGenres.push(v);
+        this.sopSelectedGenres.push(v);
+        this.sopCustomGenreInput = '';
+        ElementPlus.ElMessage.success('已添加自定义题材');
+      },
+      generateSopTopics() {
+        const D = window.SOP_WORKFLOW_DATA || {};
+        const base = JSON.parse(JSON.stringify(D.demoTopics || []));
+        const genres = this.sopSelectedGenres.length ? this.sopSelectedGenres : ['悬疑'];
+        this.sopTopicResults = base.map((t, i) => ({
+          ...t,
+          id: i + 1,
+          genre: genres[i % genres.length],
+          filmType: this.sopFilmTypeLabel,
+        }));
+        this.sopSelectedTopicId = this.sopTopicResults[0]?.id || 1;
+        ElementPlus.ElMessage.success('已生成 ' + this.sopTopicResults.length + ' 个选题方案');
+      },
+      toggleSopStyle(s) {
+        const i = this.sopSelectedStyles.indexOf(s);
+        if (i >= 0) this.sopSelectedStyles.splice(i, 1);
+        else this.sopSelectedStyles.push(s);
+      },
+      addSopCustomStyle() {
+        const v = this.sopCustomStyleInput.trim();
+        if (!v || this.sopAllStyles.includes(v)) return;
+        this.sopCustomStyles.push(v);
+        this.sopSelectedStyles.push(v);
+        this.sopCustomStyleInput = '';
+        ElementPlus.ElMessage.success('已添加自定义风格');
+      },
+      generateSopStyles() {
+        const D = window.SOP_WORKFLOW_DATA || {};
+        const imgs = ['https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=480&q=80','https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=480&q=80','https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=480&q=80'];
+        const picks = this.sopSelectedStyles.length ? this.sopSelectedStyles.slice(0, 3) : ['赛博朋克'];
+        this.sopStyleResults = picks.map((name, i) => ({
+          id: i + 1,
+          name,
+          img: imgs[i % imgs.length],
+          desc: '基于《' + this.sopConfirmedTopicTitle + '》· ' + name + ' · 原画师调色方案',
+        }));
+        this.sopSelectedStyleId = 1;
+        ElementPlus.ElMessage.success('已生成 ' + this.sopStyleResults.length + ' 张风格预览');
+      },
+      generateSopScript() {
+        const D = window.SOP_WORKFLOW_DATA || {};
+        this.sopScriptScenes = JSON.parse(JSON.stringify((D.demoScript && D.demoScript.scenes) || []));
+        this.sopScriptSceneId = this.sopScriptScenes[0]?.id || 's1';
+        this.sopScriptGenerated = true;
+        ElementPlus.ElMessage.success('剧本已生成（写作模式 · ' + this.sopScriptScenes.length + ' 场）');
+      },
+      generateSopStoryboard() {
+        const D = window.SOP_WORKFLOW_DATA || {};
+        const all = JSON.parse(JSON.stringify(D.demoStoryboard || []));
+        this.sopStoryboardRows = all.slice(0, this.sopStoryboardCount);
+        this.sopStoryboardGenerated = true;
+        ElementPlus.ElMessage.success('导演分镜表已生成 · ' + this.sopStoryboardRows.length + ' 镜');
+      },
+      generateSopCharacters() {
+        const D = window.SOP_WORKFLOW_DATA || {};
+        this.sopCharacterRows = JSON.parse(JSON.stringify(D.demoCharacters || []));
+        this.sopCharacterRows.forEach(r => this.ensureSopCharPose(r));
+        this.sopCharactersGenerated = true;
+        this.sopCharAdjustIdx = 0;
+        ElementPlus.ElMessage.success('已生成 ' + this.sopCharacterRows.length + ' 套角色设定 · 三视图+表情参考+3D预览');
+      },
+      generateSopScenes() {
+        const D = window.SOP_WORKFLOW_DATA || {};
+        this.sopSceneRows = JSON.parse(JSON.stringify(D.demoScenes || []));
+        this.sopSceneRows.forEach(r => this.ensureSopScenePose(r));
+        this.sopScenesGenerated = true;
+        this.sopSceneAdjustIdx = 0;
+        ElementPlus.ElMessage.success('已生成 ' + this.sopSceneRows.length + ' 套场景 · 九宫格摄影机矩阵 + ArchViz 一致性');
+      },
+      ensureSopScenePose(row) {
+        const D = window.SOP_WORKFLOW_DATA || {};
+        if (!row.cameraGrid && row.baseImg && D.buildSceneCameraGrid) {
+          row.cameraGrid = D.buildSceneCameraGrid(row.baseImg);
+        }
+        if (!row.pose3d) row.pose3d = { yaw: 0, pitch: -12, roll: 0, zoom: 1, focal: 50, exposure: 0, wb: 5600, dof: 8, camDist: 55 };
+        if (row.activeCam === undefined) row.activeCam = 'cam-0';
+        if (row.activeCamFree === undefined) row.activeCamFree = false;
+        if (!row.sheetImg) row.sheetImg = row.baseImg || row.sceneImg || '';
+        if (!row.sceneImg) row.sceneImg = row.baseImg || row.sheetImg || '';
+      },
+      selectSopSceneStudio(idx) {
+        this.sopSceneAdjustIdx = idx;
+        this.ensureSopScenePose(this.sopSceneRows[idx]);
+      },
+      sopSceneThumbStyle(row, cam) {
+        if (!row || !cam) return {};
+        const img = cam.img || row.sheetImg || row.sceneImg || row.baseImg || '';
+        return {
+          backgroundImage: 'url(' + img + ')',
+          backgroundPosition: cam.bgPos || 'center',
+          backgroundSize: (cam.bgScale || 100) + '%',
+        };
+      },
+      sopSceneActiveCam(row) {
+        if (!row || !row.cameraGrid) return null;
+        return row.cameraGrid.find(c => c.key === row.activeCam) || row.cameraGrid[0];
+      },
+      sopSceneViewportFace(row) {
+        const cam = this.sopSceneActiveCam(row);
+        const img = (cam && cam.img) || row.sheetImg || row.sceneImg || '';
+        const p = row.pose3d || {};
+        const exp = 1 + (p.exposure || 0) * 0.15;
+        const wbShift = ((p.wb || 5600) - 5600) / 10000;
+        return {
+          backgroundImage: 'url(' + img + ')',
+          backgroundPosition: (cam && cam.bgPos) || 'center',
+          backgroundSize: ((cam && cam.bgScale) || 100) * (p.zoom || 1) + '%',
+          filter: 'brightness(' + exp + ') contrast(1.08) saturate(' + (1 + wbShift) + ')',
+        };
+      },
+      sopSceneModelTransform(row) {
+        const p = row.pose3d || {};
+        return {
+          transform: 'rotateY(' + (p.yaw || 0) + 'deg) rotateX(' + (p.pitch || 0) + 'deg) rotateZ(' + (p.roll || 0) + 'deg) perspective(800px)',
+        };
+      },
+      sopSceneDragStart(e) {
+        const row = this.sopActiveScene;
+        if (!row) return;
+        this.ensureSopScenePose(row);
+        row.activeCamFree = true;
+        this.sopSceneDrag = { active: true, idx: this.sopSceneAdjustIdx, startX: e.clientX, startY: e.clientY, startYaw: row.pose3d.yaw, startPitch: row.pose3d.pitch };
+        this._sopSceneOnMove = (ev) => this.sopSceneDragMove(ev);
+        this._sopSceneOnUp = () => this.sopSceneDragEnd();
+        window.addEventListener('mousemove', this._sopSceneOnMove);
+        window.addEventListener('mouseup', this._sopSceneOnUp);
+      },
+      sopSceneDragMove(e) {
+        if (!this.sopSceneDrag.active) return;
+        const row = this.sopSceneRows[this.sopSceneDrag.idx];
+        if (!row) return;
+        const dx = e.clientX - this.sopSceneDrag.startX;
+        const dy = e.clientY - this.sopSceneDrag.startY;
+        row.pose3d.yaw = this.sopSceneDrag.startYaw + dx * 0.5;
+        row.pose3d.pitch = Math.max(-60, Math.min(30, this.sopSceneDrag.startPitch - dy * 0.3));
+      },
+      sopSceneDragEnd() {
+        this.sopSceneDrag.active = false;
+        if (this._sopSceneOnMove) window.removeEventListener('mousemove', this._sopSceneOnMove);
+        if (this._sopSceneOnUp) window.removeEventListener('mouseup', this._sopSceneOnUp);
+      },
+      sopSceneWheel(e) {
+        const row = this.sopActiveScene;
+        if (!row || !row.pose3d) return;
+        row.pose3d.zoom = Math.max(0.7, Math.min(1.5, row.pose3d.zoom - e.deltaY * 0.001));
+        row.activeCamFree = true;
+      },
+      selectSopSceneCam(row, key) {
+        this.ensureSopScenePose(row);
+        row.activeCam = key;
+        row.activeCamFree = false;
+        const yawMap = { 'cam-0': 0, 'cam-1': 0, 'cam-2': 90, 'cam-3': 90, 'cam-4': 180, 'cam-5': 180, 'cam-6': -30, 'cam-7': -45, 'cam-8': 45 };
+        const pitchMap = { 'cam-0': 0, 'cam-1': 5, 'cam-2': 0, 'cam-3': 8, 'cam-4': 0, 'cam-5': 5, 'cam-6': -35, 'cam-7': -50, 'cam-8': -25 };
+        row.pose3d.yaw = yawMap[key] !== undefined ? yawMap[key] : 0;
+        row.pose3d.pitch = pitchMap[key] !== undefined ? pitchMap[key] : 0;
+      },
+      resetSopScene3d(row) {
+        if (!row) return;
+        row.pose3d = { yaw: 0, pitch: -12, roll: 0, zoom: 1, focal: 50, exposure: 0, wb: 5600, dof: 8, camDist: 55 };
+        row.activeCam = 'cam-0';
+        row.activeCamFree = false;
+        ElementPlus.ElMessage.info('场景机位已重置 · 50mm 标准视角');
+      },
+      lockSopScenePose(row) {
+        if (!row) return;
+        ElementPlus.ElMessage.success('「' + row.name + '」场景一致性已锁定 · 九宫格 ArchViz 入库');
+      },
+      mockSopRefUpload(row, type) {
+        if (type === 'char') {
+          row.refImg = row.sheetImg || 'assets/sop-char-ref-male.png';
+          ElementPlus.ElMessage.success('参考图已绑定 · 与设定稿同步（Demo）');
+          return;
+        }
+        row.refImg = row.sheetImg || row.sceneImg || row.baseImg || '';
+        ElementPlus.ElMessage.success('场景参考图已绑定 · 与九宫格同步（Demo）');
+      },
+      ensureSopCharPose(row) {
+        if (!row.pose3d) row.pose3d = { yaw: 0, pitch: 0, roll: 0, zoom: 1, lightAz: 135, lightEl: 40, camDist: 50, focal: 85 };
+        if (row.activeView === undefined) row.activeView = 'front';
+        if (row.activeExpr === undefined) row.activeExpr = null;
+      },
+      selectSopCharStudio(idx) {
+        this.sopCharAdjustIdx = idx;
+        this.ensureSopCharPose(this.sopCharacterRows[idx]);
+      },
+      sopCharThumbStyle(row, crop) {
+        if (!row || !crop) return {};
+        const img = row.sheetImg || row.charImg || '';
+        const scale = crop.bgScale || 200;
+        return {
+          backgroundImage: 'url(' + img + ')',
+          backgroundPosition: crop.bgPos || 'center',
+          backgroundSize: scale + '%',
+        };
+      },
+      sopCharViewportCrop(row) {
+        if (!row) return null;
+        if (row.activeExpr !== null && row.expressions && row.expressions[row.activeExpr]) {
+          return row.expressions[row.activeExpr];
+        }
+        if (row.activeView && row.activeView !== 'free' && row.views && row.views[row.activeView]) {
+          return row.views[row.activeView];
+        }
+        return row.views && row.views.front ? row.views.front : { bgPos: 'center', bgScale: 180 };
+      },
+      sopCharViewportFace(row) {
+        const crop = this.sopCharViewportCrop(row);
+        const img = row.sheetImg || row.charImg || '';
+        const la = (row.pose3d && row.pose3d.lightAz) || 135;
+        const le = (row.pose3d && row.pose3d.lightEl) || 40;
+        return {
+          backgroundImage: 'url(' + img + ')',
+          backgroundPosition: (crop && crop.bgPos) || 'center',
+          backgroundSize: ((crop && crop.bgScale) || 180) + '%',
+          filter: 'brightness(' + (0.88 + le / 300) + ') contrast(1.05)',
+          boxShadow: (-20 + la / 3) + 'px ' + (10 + le / 4) + 'px 40px rgba(0,0,0,.35)',
+        };
+      },
+      sopCharModelTransform(row) {
+        const p = row.pose3d || {};
+        const cam = (p.camDist || 50) / 50;
+        return {
+          transform: 'rotateY(' + (p.yaw || 0) + 'deg) rotateX(' + (p.pitch || 0) + 'deg) rotateZ(' + (p.roll || 0) + 'deg) scale(' + ((p.zoom || 1) * cam) + ')',
+        };
+      },
+      sopCharDragStart(e) {
+        const row = this.sopActiveChar;
+        if (!row) return;
+        this.ensureSopCharPose(row);
+        row.activeView = 'free';
+        row.activeExpr = null;
+        this.sopCharDrag = {
+          active: true,
+          idx: this.sopCharAdjustIdx,
+          startX: e.clientX,
+          startY: e.clientY,
+          startYaw: row.pose3d.yaw,
+          startPitch: row.pose3d.pitch,
+        };
+        this._sopCharOnMove = (ev) => this.sopCharDragMove(ev);
+        this._sopCharOnUp = () => this.sopCharDragEnd();
+        window.addEventListener('mousemove', this._sopCharOnMove);
+        window.addEventListener('mouseup', this._sopCharOnUp);
+      },
+      sopCharDragMove(e) {
+        if (!this.sopCharDrag.active) return;
+        const row = this.sopCharacterRows[this.sopCharDrag.idx];
+        if (!row) return;
+        const dx = e.clientX - this.sopCharDrag.startX;
+        const dy = e.clientY - this.sopCharDrag.startY;
+        row.pose3d.yaw = this.sopCharDrag.startYaw + dx * 0.6;
+        row.pose3d.pitch = Math.max(-45, Math.min(45, this.sopCharDrag.startPitch - dy * 0.35));
+      },
+      sopCharDragEnd() {
+        this.sopCharDrag.active = false;
+        if (this._sopCharOnMove) window.removeEventListener('mousemove', this._sopCharOnMove);
+        if (this._sopCharOnUp) window.removeEventListener('mouseup', this._sopCharOnUp);
+      },
+      sopCharWheel(e) {
+        const row = this.sopActiveChar;
+        if (!row || !row.pose3d) return;
+        row.pose3d.zoom = Math.max(0.6, Math.min(1.6, row.pose3d.zoom - e.deltaY * 0.001));
+      },
+      selectSopCharView(row, key) {
+        this.ensureSopCharPose(row);
+        row.activeView = key;
+        row.activeExpr = null;
+        const yawMap = { front: 0, side: 90, back: 180 };
+        row.pose3d.yaw = yawMap[key] !== undefined ? yawMap[key] : 0;
+        row.pose3d.pitch = 0;
+      },
+      selectSopCharExpr(row, idx) {
+        this.ensureSopCharPose(row);
+        row.activeExpr = idx;
+        row.activeView = 'free';
+      },
+      resetSopChar3d(row) {
+        if (!row) return;
+        row.pose3d = { yaw: 0, pitch: 0, roll: 0, zoom: 1, lightAz: 135, lightEl: 40, camDist: 50, focal: 85 };
+        row.activeView = 'front';
+        row.activeExpr = null;
+        ElementPlus.ElMessage.info('3D 参数已重置');
+      },
+      lockSopCharPose(row) {
+        if (!row) return;
+        ElementPlus.ElMessage.success('「' + row.name + '」角色一致性已锁定 · 三视图+表情参考入库');
+      },
+      enterSopCanvasWithResults() {
+        this.sopEnteredCanvas = true;
+        ElementPlus.ElMessage.success('SOP 产物已注入画布 · 可继续视频合成');
+      },
+      nextSop() {
+        if (this.sopActive === 0) {
+          if (!this.sopSelectedTopicId) { ElementPlus.ElMessage.warning('请先选择选题'); return; }
+        }
+        if (this.sopActive === 1 && !this.sopSelectedStyleId) {
+          ElementPlus.ElMessage.warning('请先选择风格'); return;
+        }
+        if (this.sopActive === 6) {
+          this.enterSopCanvasWithResults();
+          return;
+        }
+        if (this.sopActive < this.sopSteps.length - 1) {
+          this.sopActive++;
+          ElementPlus.ElMessage.success('阶段已确认，进入「' + this.sopSteps[this.sopActive] + '」（消耗 🍿 25）');
+        }
+      },
       prevSop() { if (this.sopActive > 0) this.sopActive--; },
       turntableStyle(i) {
         const total = this.crowd.length, r = 150;
