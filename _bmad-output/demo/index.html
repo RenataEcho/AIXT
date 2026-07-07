@@ -292,6 +292,16 @@
     .writing-placeholder__tag { flex-shrink:0; width:28px; height:28px; border-radius:8px; background:var(--brand-grad); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; }
     .writing-placeholder__item strong { display:block; font-size:14px; margin-bottom:6px; color:var(--el-text-color-primary); }
     .writing-placeholder__item p { margin:0; font-size:13px; line-height:1.75; color:var(--el-text-color-secondary); }
+    .writing-placeholder--script { align-items:stretch; justify-content:flex-start; text-align:left; padding:32px 36px; overflow-y:auto; }
+    .writing-placeholder__section { max-width:820px; width:100%; margin:0 auto; }
+    .writing-placeholder__section + .writing-placeholder__section { margin-top:28px; padding-top:24px; border-top:1px solid var(--el-border-color-lighter); }
+    .writing-placeholder__section-title { font-size:15px; font-weight:600; color:var(--el-text-color-primary); margin-bottom:14px; }
+    .writing-placeholder__list { margin:0; padding-left:22px; font-size:13px; line-height:1.85; color:var(--el-text-color-secondary); }
+    .writing-placeholder__list li + li { margin-top:10px; }
+    .writing-placeholder__list a { color:var(--el-color-primary); text-decoration:none; }
+    .writing-placeholder__list a:hover { text-decoration:underline; }
+    .writing-placeholder__actions { display:flex; flex-wrap:wrap; gap:10px; }
+    .writing-placeholder__hint { margin:10px 0 0; font-size:12px; color:var(--el-text-color-secondary); }
     /* canvas */
     .canvas-wrap { position:relative; height: calc(100vh - 240px); border:1px solid var(--el-border-color-lighter); border-radius:12px;
       background: radial-gradient(var(--el-border-color) 1px, transparent 1px); background-size: 22px 22px; background-color: var(--el-bg-color); overflow:hidden; }
@@ -2314,10 +2324,35 @@
       <!-- ========== 写作 ========== -->
       <div v-if="active==='writing'" class="page-shell page-shell--wide">
         <div class="page-title"><div><h2>{{ writingEntryFrom==='script' ? '剧本 · 文本创作' : '写作 · 小说/文本创作' }}</h2>
-          <div class="desc" v-if="writingPlaceholder">使用小题大作现有的写作流程</div>
+          <div class="desc" v-if="writingPlaceholder && writingEntryFrom==='script'">参考小题写作的模式，详情页内调整功能名称</div>
+          <div class="desc" v-else-if="writingPlaceholder">使用小题大作现有的写作流程</div>
           <div class="desc" v-else>作品 → 整体架构 → 细纲 → 章节正文 → 导出全文（计费：🌽 米花）</div></div>
           <div v-if="!writingPlaceholder"><el-button @click="go('copyright')"><el-icon><Notebook /></el-icon>一键确权挂牌</el-button><el-button type="primary">导出全文</el-button></div></div>
-        <div v-if="writingPlaceholder" class="writing-placeholder">
+        <div v-if="writingPlaceholder && writingEntryFrom==='script'" class="writing-placeholder writing-placeholder--script">
+          <div class="writing-placeholder__section">
+            <div class="writing-placeholder__section-title">A · 参考小题写作的模式，详情页内调整功能名称</div>
+            <ol class="writing-placeholder__list">
+              <li>左侧菜单：剧本概况、各章节名称（字数、最后修改时间）</li>
+              <li>中间区域：剧本概况对应中间区域页面跟小说差不多；封面图（可修改）；标题（可修改）、特殊设定（默认为空，可不填，但如果用户填写，要将此内容在每次生成剧集内容时加到上下文中，如特殊的计量单位设定，人物等级设定等）</li>
+              <li>故事大纲：（可直接修改，也可通过修改提示词重新生成，大纲修改完后，提示用户是否重新生成人物小传和集纲，如果用户选择是，要参考新大纲生成）</li>
+              <li>人物小传：可延续角色库方式</li>
+              <li>集纲（如果用户选择生成则有，否则没有此模块，用户可以针对每一个集纲单独进行修改）</li>
+              <li>各章节名称对应中间区域页面</li>
+              <li>章节名称</li>
+              <li>章节内容 · <a href="https://mqv7erfldf.feishu.cn/wiki/JOQ8wfEAdiJkTIkmxSucgcxKnX1" target="_blank" rel="noopener noreferrer">飞书文档参考</a></li>
+            </ol>
+          </div>
+          <div class="writing-placeholder__section">
+            <div class="writing-placeholder__section-title">B · 功能按钮</div>
+            <div class="writing-placeholder__actions">
+              <el-button @click="go('script-eval')">剧本评估</el-button>
+              <el-button @click="go('script-breakdown')">剧本拆解</el-button>
+              <el-button type="primary" @click="openContactBusiness">申请投稿</el-button>
+            </div>
+            <p class="writing-placeholder__hint">申请投稿将联系商务顾问</p>
+          </div>
+        </div>
+        <div v-else-if="writingPlaceholder" class="writing-placeholder">
           <div class="writing-placeholder__main">使用小题大作现有的写作流程</div>
           <div class="writing-placeholder__opts">
             <div class="writing-placeholder__item">
@@ -2327,6 +2362,10 @@
             <div class="writing-placeholder__item">
               <span class="writing-placeholder__tag">B</span>
               <div><strong>写作流程优化</strong><p>市场反馈偏固化，需要再次讨论流程节点优化</p></div>
+            </div>
+            <div class="writing-placeholder__item">
+              <span class="writing-placeholder__tag">C</span>
+              <div><strong>确权挂牌</strong><p>完成写作后可申请版权挂牌授权</p><el-button type="primary" plain size="small" style="margin-top:8px;" @click="openContactBusiness">申请挂牌授权</el-button></div>
             </div>
           </div>
         </div>
@@ -5921,6 +5960,12 @@
       },
       openContactUs() {
         this.resetContactDialog();
+        this.contactDialog = true;
+      },
+      openContactBusiness() {
+        this.contactStep = 'success';
+        this.contactSubmitted = false;
+        this.contactLoadingQr = false;
         this.contactDialog = true;
       },
       resetContactDialog() {
