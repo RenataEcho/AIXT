@@ -5775,7 +5775,7 @@ window.SOP_WORKFLOW_DATA = {
 window.PAGE_REQ_SPECS = {
   showcase: {
     title: "影片大赏",
-    mainFunctions: "作品展示广场与创作社区入口（导航首项）。展示 IP 与影片成片，支持三维筛选，承载引流与「可复盘创作过程」价值主张。计划版本：v1.0 展示/搜索；v1.2 完整互动与复盘。",
+    mainFunctions: "作品展示广场与创作社区入口（导航首项）。**Demo 默认 landing 页**（active=showcase）。展示 IP 与影片成片，支持三维筛选，承载引流与「可复盘创作过程」价值主张。计划版本：v1.0 展示/搜索；v1.2 完整互动与复盘。",
     functionPoints: "- Hero 区：全屏背景图轮播 + 固定 Slogan 文案（showcaseHeroSlides[] 纯 URL 数组）\n- 三维搜索：类型 / 作者名称 / 标题，前端即时过滤\n- 海报作品网格：封面、标题、作者、点赞/收藏/分享/翻拍等元数据\n- 作者信息区（v1.2）：头像、VIP 标识、简介 desc、属地 meta\n- 目标态（v1.2）：赞/藏/评/享/关五种互动；评论需审核；未登录弹登录后补执行\n- 目标态（v1.2）：从成片反向复盘分镜/选题/Agent，跳转市场",
     fields: "- showcaseSearch: { type, author, title }\n- showcaseHeroSlides[]: string[]（图片 URL）\n- showcaseHeroIdx: number\n- posterWorks[]: { n, author, avatar, vip, cover, desc, meta, like, cmt, fav, share, remake, type }",
     rules: "- 筛选为空时展示全部作品\n- 卡片封面缺失时使用渐变占位\n- Hero 可手动左右切换，索引循环\n- 互动类能力 v1.2 上线；Demo 为展示态\n- 作品数据来源于大赏内容池（Demo 静态样例）",
@@ -5807,7 +5807,7 @@ window.PAGE_REQ_SPECS = {
   },
   projects: {
     title: "创作",
-    mainFunctions: "项目 hub / 生产总入口。**Demo 默认 landing 页**（active=projects，2026-07-07 由 home 调整）。四 Tab 分流：自由画布 / SOP画布 / 写作 / 剧本。Banner 引流 + 各轨独立项目池 + 统一创建入口 enterProjEntry。计划：v1.0 hub；v1.1 四 Tab + SOP 入口。",
+    mainFunctions: "项目 hub / 生产总入口。四 Tab 分流：自由画布 / SOP画布 / 写作 / 剧本。Banner 引流 + 各轨独立项目池 + 统一创建入口 enterProjEntry。计划：v1.0 hub；v1.1 四 Tab + SOP 入口。",
     functionPoints: "- 3D Banner：brand/sub/cta/img/action 图片轮播；CTA 可跳 canvas\n- **四 Tab**（2026-07-07）：自由画布 | SOP画布 | 写作 | 剧本\n- 各 Tab 独立项目宫格 + 首张「开始创作」卡\n- **enterProjEntry 统一入口**：\n  · 自由画布 Tab → createModeDialog 提示现有画布流程\n  · SOP画布 Tab → go(canvas, { sopOnly: true })\n  · 写作 Tab → go(writing, { placeholder: true, entryFrom: writing }) 占位页\n  · 剧本 Tab → go(writing, { placeholder: true, entryFrom: script }) 占位页\n- SOP 独立项目池 sopCanvasProjects[]\n- 子页详见：canvas（5-1）、writing（5-2）页面需求说明",
     fields: "- projTab: film | sop | writing | script\n- filmProjects[], sopCanvasProjects[], writingProjects[], scriptProjects[]\n- projBanners[]: { brand, sub, cta, img, action }\n- projCreateConfig: { label, mode } per Tab\n- enterProjEntry(), createModeDialog, createModeMessage\n- writingPlaceholder / writingEntryFrom：写作占位页状态",
     rules: "- Tab 切换改变 currentGridProjects 数据源\n- SOP Tab 进入 canvas 时 canvasSopOnly=true，隐藏自由/SOP 切换\n- 写作 Tab 占位态：A/B/C 优化提示，C 申请挂牌授权 → openContactBusiness\n- 剧本 Tab 占位态：A 功能结构说明 + B 工具按钮（评估/拆解/投稿）\n- 自由画布 Tab 不直接进入 canvas，先弹窗说明\n- 空项目仍展示「开始创作」卡\n- projListDialog 已无 UI 入口（遗留代码）",
@@ -5872,7 +5872,7 @@ window.PAGE_REQ_SPECS = {
   tutorial: {
     title: "教程中心",
     mainFunctions: "帮助文档（底部栏）。6 篇：产品介绍/快速开始/创作指南/功能说明/社群玩法/FAQ。游客可见，承担引流教育。",
-    functionPoints: "- 左侧 docNav 6 项\n- 右侧对应文档正文（步骤列表/FAQ）\n- 覆盖：双货币计费、工作台鉴权、创作流程说明\n\n**关联全局能力（非本页路由）**\n- **商务合作弹窗**（底部栏「联系」）：身份个人/企业 → 企业多步表单（团队/经验/制作类型/规模/手机/微信）→ 成功展示二维码；见 contact spec\n- **默认 landing**：启动进入创作 hub（projects）",
+    functionPoints: "- 左侧 docNav 6 项\n- 右侧对应文档正文（步骤列表/FAQ）\n- 覆盖：双货币计费、工作台鉴权、创作流程说明\n\n**关联全局能力（非本页路由）**\n- **商务合作弹窗**（底部栏「联系」）：身份个人/企业 → 企业多步表单（团队/经验/制作类型/规模/手机/微信）→ 成功展示二维码；见 contact spec\n- **默认 landing**：启动进入大赏（showcase）",
     fields: "- tutorialDocKey: introduction | quick-start | creation-guide | feature-guide | community-guide | faq\n- docNav[]: { key, label, icon }",
     rules: "- 静态文档内容，运营可更新\n- 游客可访问",
     interactions: "- 侧栏点击：切换 tutorialDocKey",
@@ -5959,7 +5959,7 @@ window.PAGE_REQ_TRIGGER_KEYS = [
     template: '#app-template',
     data() {
       return {
-        active: 'projects',
+        active: 'showcase',
         pageReqVisible: false,
         pageReqEditing: false,
         pageReqContent: { title: '', mainFunctions: '', functionPoints: '', fields: '', rules: '', interactions: '' },
