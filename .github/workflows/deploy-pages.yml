@@ -27,7 +27,9 @@ jobs:
           python-version: "3.x"
 
       - name: Build standalone demo
-        run: python3 _bmad-output/demo/build-standalone.py
+        run: |
+          python3 _bmad-output/demo/sync-script-covers.py
+          python3 _bmad-output/demo/build-standalone.py
 
       - name: Disable Jekyll
         run: touch _bmad-output/demo-public/.nojekyll

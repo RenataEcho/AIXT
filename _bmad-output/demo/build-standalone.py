@@ -5,6 +5,7 @@ import base64
 import mimetypes
 import os
 import re
+import subprocess
 import sys
 
 DEMO_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -89,7 +90,33 @@ def inline_script(html: str, filename: str, content: str) -> str:
     return html.replace(tag, f"<script>\n{content}\n</script>")
 
 
+def sync_script_covers() -> None:
+    sync_script = os.path.join(DEMO_DIR, "sync-script-covers.py")
+    if not os.path.exists(sync_script):
+        return
+    print("Syncing script covers...")
+    subprocess.run([sys.executable, sync_script], check=True)
+
+
+def validate_assets(asset_map: dict[str, str], html: str) -> None:
+    for i in range(1, 11):
+        rel = f"assets/copyright-covers/book-{i:02d}.jpg"
+        if rel not in asset_map:
+            print(f"ERROR: missing copyright cover {rel}", file=sys.stderr)
+            sys.exit(1)
+    if "wangwen-bigdata.oss-cn-beijing.aliyuncs.com/script/cover/" in html:
+        print("ERROR: script cover still uses expired OSS URLs", file=sys.stderr)
+        sys.exit(1)
+    if re.search(r'"coverUrl":\s*"assets/script-covers/', html):
+        print("ERROR: script cover paths not inlined", file=sys.stderr)
+        sys.exit(1)
+    if re.search(r"cover:\s*'assets/copyright-covers/", html):
+        print("ERROR: novel copyright cover paths not inlined", file=sys.stderr)
+        sys.exit(1)
+
+
 def main() -> None:
+    sync_script_covers()
     asset_map = build_asset_map()
     print(f"Assets: {len(asset_map)} files")
 
@@ -132,6 +159,8 @@ def main() -> None:
         if f'src="{script}"' in html:
             print(f"ERROR: {script} still external", file=sys.stderr)
             sys.exit(1)
+
+    validate_assets(asset_map, html)
 
     with open(OUTPUT, "w", encoding="utf-8") as f:
         f.write(html)
