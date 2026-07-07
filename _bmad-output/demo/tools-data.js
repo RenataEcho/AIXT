@@ -1,7 +1,8 @@
 (function () {
-  const BASE = 'http://test.aixtdz.com/preview/';
-  const ASSET = BASE + 'assets/canvas-example-assets/';
-  const IP_SHOWCASE = BASE + 'assets/generated/visual-ip-showcase/';
+  const ASSET = 'assets/canvas-example-assets/';
+  const IP_SHOWCASE = 'assets/generated/visual-ip-showcase/';
+  const img = (name) => ASSET + name;
+  const showcase = (name) => IP_SHOWCASE + name;
   const TOOL_COVERS = 'assets/tool-covers/';
 
   const VIDEO_STRUCTURE_CHAPTERS = [
@@ -37,29 +38,29 @@
   function visuals(id) {
     const map = {
       'prompt-extract': [
-        ['生成结果图', '合同与账单主画面', ASSET + 'shot-contract.png'],
-        ['镜头示例', '医院走廊推进', ASSET + 'shot-corridor.png'],
-        ['风格样张', '雨夜城市低饱和', ASSET + 'video-city-hero.png'],
+        ['生成结果图', '合同与账单主画面', img('shot-contract.png')],
+        ['镜头示例', '医院走廊推进', img('shot-corridor.png')],
+        ['风格样张', '雨夜城市低饱和', img('video-city-hero.png')],
       ],
       'video-structure': [
-        ['开场钩子图', '压力现场先入镜', ASSET + 'shot-contract.png'],
-        ['中段加压图', '人物进入规则空间', ASSET + 'shot-corridor.png'],
-        ['结尾余味图', '城市雨夜收束', ASSET + 'video-city-hero.png'],
+        ['开场钩子图', '压力现场先入镜', img('shot-contract.png')],
+        ['中段加压图', '人物进入规则空间', img('shot-corridor.png')],
+        ['结尾余味图', '城市雨夜收束', img('video-city-hero.png')],
       ],
       'audio-extract': [
-        ['声画结果图', '城市雨声底噪', ASSET + 'video-city-hero.png'],
-        ['情绪节点', '夜间办公室停顿', ASSET + 'scene-office-night.png'],
-        ['音效场景', '走廊回声与脚步', ASSET + 'shot-corridor.png'],
+        ['声画结果图', '城市雨声底噪', img('video-city-hero.png')],
+        ['情绪节点', '夜间办公室停顿', img('scene-office-night.png')],
+        ['音效场景', '走廊回声与脚步', img('shot-corridor.png')],
       ],
       'asset-extract': [
-        ['人物资产图', '主角状态', ASSET + 'character-hero.png'],
-        ['场景资产图', '办公室夜景', ASSET + 'scene-office-night.png'],
-        ['道具资产图', '证据墙与文件', ASSET + 'shot-evidence.png'],
+        ['人物资产图', '主角状态', img('character-hero.png')],
+        ['场景资产图', '办公室夜景', img('scene-office-night.png')],
+        ['道具资产图', '证据墙与文件', img('shot-evidence.png')],
       ],
       'visual-ip-agent': [
-        ['IP母版', '原创角色识别', ASSET + 'character-hero.png'],
-        ['封面构图', '横竖版安全区', ASSET + 'character-fullbody.png'],
-        ['视觉DNA', '光影与材质', ASSET + 'shot-evidence.png'],
+        ['IP母版', '原创角色识别', img('character-hero.png')],
+        ['封面构图', '横竖版安全区', img('character-fullbody.png')],
+        ['视觉DNA', '光影与材质', img('shot-evidence.png')],
       ],
     };
     const set = map[id] || map['prompt-extract'];
@@ -663,10 +664,10 @@
       },
     ],
     showcase: [
-      { title: '黑雨策展人', desc: '冷调城市夜景 · 半写实账号封面 IP', image: IP_SHOWCASE + 'douyin-showcase-ip-01-noir-rooftop.jpg' },
-      { title: '档案叙事官', desc: '资料室低光 · 悬疑故事型 IP', image: IP_SHOWCASE + 'douyin-showcase-ip-02-archive-storyteller.jpg' },
-      { title: '银发导演型', desc: '玻璃走廊侧光 · 清冷识别度 IP', image: IP_SHOWCASE + 'douyin-showcase-ip-03-silver-director.jpg' },
-      { title: '暗巷少年感', desc: '旧街霓虹雨夜 · 都市奇幻 IP', image: IP_SHOWCASE + 'douyin-showcase-ip-04-urban-fantasy.jpg' },
+      { title: '黑雨策展人', desc: '冷调城市夜景 · 半写实账号封面 IP', image: showcase('douyin-showcase-ip-01-noir-rooftop.jpg') },
+      { title: '档案叙事官', desc: '资料室低光 · 悬疑故事型 IP', image: showcase('douyin-showcase-ip-02-archive-storyteller.jpg') },
+      { title: '银发导演型', desc: '玻璃走廊侧光 · 清冷识别度 IP', image: showcase('douyin-showcase-ip-03-silver-director.jpg') },
+      { title: '暗巷少年感', desc: '旧街霓虹雨夜 · 都市奇幻 IP', image: showcase('douyin-showcase-ip-04-urban-fantasy.jpg') },
     ],
     audioTimeline: ['0-1s 环境底噪', '1-2s 扣款提示', '2-3.5s 吸气停顿', '3.5-4.5s 纸张落桌', '4.5-5s 留白进对白'],
     buildResult(tool, link) {

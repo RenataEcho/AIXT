@@ -1454,6 +1454,114 @@
       .copyright-panel .popcorn-breakdown .part { min-width: calc(50% - 20px); }
       .popcorn-balance-row { flex-direction: column; align-items: center; }
     }
+    .settlement-invite-banner {
+      position: relative; overflow: hidden; border-radius: 16px; margin-bottom: 18px; padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer;
+      background: linear-gradient(135deg, rgba(123,108,246,.22) 0%, rgba(245,185,66,.14) 52%, rgba(0,209,160,.1) 100%);
+      border: 1px solid rgba(123,108,246,.35); transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .settlement-invite-banner:hover { transform: translateY(-2px); border-color: rgba(245,185,66,.45); box-shadow: 0 12px 28px rgba(0,0,0,.24); }
+    .settlement-invite-banner__glow {
+      position: absolute; right: -40px; top: -30px; width: 180px; height: 180px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,185,66,.28), transparent 68%); pointer-events: none;
+    }
+    .settlement-invite-banner__content { position: relative; z-index: 1; min-width: 0; }
+    .settlement-invite-banner__badge {
+      display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px;
+      font-size: 11px; font-weight: 700; color: #f5b942; background: rgba(245,185,66,.14); border: 1px solid rgba(245,185,66,.28); margin-bottom: 8px;
+    }
+    .settlement-invite-banner__title { font-size: 18px; font-weight: 800; color: var(--el-text-color-primary); margin-bottom: 6px; }
+    .settlement-invite-banner__sub { font-size: 13px; color: var(--el-text-color-secondary); line-height: 1.5; }
+    .settlement-invite-banner__cta {
+      position: relative; z-index: 1; flex-shrink: 0; padding: 10px 18px; border-radius: 999px; font-size: 13px; font-weight: 700;
+      color: #fff; background: var(--brand-grad); box-shadow: 0 8px 18px rgba(123,108,246,.35);
+    }
+    .invite-poster-dialog .el-dialog__body { padding: 12px 20px 20px; }
+    .invite-poster {
+      position: relative; width: 100%; max-width: 400px; margin: 0 auto; aspect-ratio: 9 / 16; border-radius: 22px; overflow: hidden;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(245,185,66,.28), transparent 34%),
+        radial-gradient(circle at 12% 92%, rgba(123,108,246,.24), transparent 38%),
+        linear-gradient(165deg, #12081f 0%, #241544 38%, #1a0f2e 72%, #0d0714 100%);
+      border: 1px solid rgba(245,185,66,.22); box-shadow: 0 22px 48px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.08);
+      display: flex; flex-direction: column; align-items: stretch; text-align: center; padding: 0 0 24px;
+    }
+    .invite-poster__ribbon {
+      position: relative; z-index: 2; padding: 12px 20px; font-size: 13px; font-weight: 800; letter-spacing: 1px;
+      color: #2a1808; background: linear-gradient(90deg, #ffd36a 0%, #ffb347 45%, #ff8f5a 100%);
+      box-shadow: 0 6px 18px rgba(255,143,90,.28);
+    }
+    .invite-poster__body { position: relative; z-index: 1; padding: 24px 22px 0; display: flex; flex-direction: column; align-items: center; flex: 1; }
+    .invite-poster__spark { position: absolute; border-radius: 50%; pointer-events: none; opacity: .75; }
+    .invite-poster__spark--1 { width: 140px; height: 140px; top: 48px; right: -20px; background: rgba(123,108,246,.22); filter: blur(2px); }
+    .invite-poster__spark--2 { width: 110px; height: 110px; bottom: 130px; left: -18px; background: rgba(245,185,66,.18); filter: blur(2px); }
+    .invite-poster__brand { font-size: 13px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,.58); margin-bottom: 14px; }
+    .invite-poster__hero { margin-bottom: 16px; }
+    .invite-poster__hero-main {
+      font-size: 32px; font-weight: 900; line-height: 1.15; letter-spacing: .5px;
+      background: linear-gradient(180deg, #fff 0%, #ffe7a8 72%, #f5b942 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .invite-poster__hero-sub { margin-top: 8px; font-size: 15px; font-weight: 700; color: #ffcf73; }
+    .invite-poster__highlights { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 16px; }
+    .invite-poster__pill {
+      padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 800; color: #fff;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,207,115,.28);
+    }
+    .invite-poster__pill--hot { color: #2a1808; background: linear-gradient(90deg, #ffe08a, #ffb84d); border-color: transparent; }
+    .invite-poster__stats {
+      width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;
+    }
+    .invite-poster__stat {
+      padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    }
+    .invite-poster__stat strong { display: block; font-size: 18px; font-weight: 900; color: #f5b942; line-height: 1.2; }
+    .invite-poster__stat span { display: block; margin-top: 4px; font-size: 11px; color: rgba(255,255,255,.62); }
+    .invite-poster__user {
+      width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; margin-bottom: 16px;
+      background: linear-gradient(90deg, rgba(123,108,246,.18), rgba(245,185,66,.1)); border: 1px solid rgba(255,255,255,.1);
+    }
+    .invite-poster__avatar {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; color: #fff; background: var(--brand-grad); box-shadow: 0 6px 14px rgba(123,108,246,.35);
+    }
+    .invite-poster__user-text { text-align: left; min-width: 0; }
+    .invite-poster__user-text strong { display: block; font-size: 14px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .invite-poster__user-text span { display: block; margin-top: 4px; font-size: 12px; color: rgba(255,255,255,.62); }
+    .invite-poster__benefit-list { width: 100%; display: grid; gap: 8px; margin-bottom: 16px; text-align: left; }
+    .invite-poster__benefit-item {
+      display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 12px;
+      background: rgba(0,0,0,.18); border: 1px solid rgba(255,255,255,.06); font-size: 12px; color: rgba(255,255,255,.82);
+    }
+    .invite-poster__benefit-item em {
+      flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+      font-style: normal; font-size: 11px; font-weight: 800; color: #2a1808; background: linear-gradient(180deg, #ffe08a, #f5b942);
+    }
+    .invite-poster__code {
+      width: 100%; padding: 16px 18px 18px; border-radius: 18px; margin-bottom: 16px;
+      background: linear-gradient(180deg, rgba(245,185,66,.16), rgba(245,185,66,.06));
+      border: 1px solid rgba(245,185,66,.34); box-shadow: 0 0 0 1px rgba(255,255,255,.04) inset;
+    }
+    .invite-poster__code .label { display: block; font-size: 12px; font-weight: 700; color: rgba(255,255,255,.58); margin-bottom: 6px; }
+    .invite-poster__code .code { display: block; font-size: 36px; font-weight: 900; letter-spacing: 6px; color: #ffd76a; text-shadow: 0 2px 12px rgba(245,185,66,.35); font-variant-numeric: tabular-nums; }
+    .invite-poster__code .hint { display: block; margin-top: 6px; font-size: 11px; color: rgba(255,255,255,.5); }
+    .invite-poster__qr-wrap { position: relative; margin-bottom: 12px; }
+    .invite-poster__scan-cta {
+      display: inline-flex; align-items: center; justify-content: center; min-width: 188px; padding: 9px 18px; border-radius: 999px; margin-bottom: 14px;
+      font-size: 13px; font-weight: 800; color: #2a1808; background: linear-gradient(90deg, #ffe08a, #ffb84d);
+      box-shadow: 0 8px 18px rgba(245,185,66,.28);
+    }
+    .invite-poster__qr {
+      width: 148px; height: 148px; padding: 9px; border-radius: 18px; background: #fff; margin: 0 auto;
+      box-shadow: 0 10px 24px rgba(0,0,0,.28);
+    }
+    .invite-poster__qr img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 10px; }
+    .invite-poster__footer { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,.55); padding: 0 22px 4px; }
+    .invite-poster__footer strong { color: rgba(255,255,255,.78); }
+    @media (max-width: 640px) {
+      .settlement-invite-banner { flex-direction: column; align-items: flex-start; }
+      .settlement-invite-banner__cta { align-self: stretch; text-align: center; }
+    }
 
     /* ===== 文创版权（复刻 aixtdz.com/copyright · CopyrightLanding） ===== */
     .cp-landing { display: grid; gap: 18px; min-width: 0; padding-bottom: 48px; }
@@ -2775,6 +2883,15 @@
             <div class="t"><el-button type="primary" size="small" @click="withdrawDialog=true">立即提现</el-button></div>
           </div>
         </div>
+        <div class="settlement-invite-banner" role="button" tabindex="0" @click="openInvitePoster" @keyup.enter="openInvitePoster">
+          <div class="settlement-invite-banner__glow"></div>
+          <div class="settlement-invite-banner__content">
+            <div class="settlement-invite-banner__badge">🔥 限时邀请 · 最高30%返佣</div>
+            <div class="settlement-invite-banner__title">邀好友创作，躺赚持续分佣</div>
+            <div class="settlement-invite-banner__sub">新人赠1000米花 · 12,000+创作者已加入 · 点击生成营销海报</div>
+          </div>
+          <div class="settlement-invite-banner__cta">生成分享海报</div>
+        </div>
         <el-tabs v-model="settlementTab" class="page-tabs settlement-tabs">
           <el-tab-pane label="版权结算" name="copyright">
             <div class="settlement-tab-body">
@@ -3551,7 +3668,7 @@
 
             <!-- 剧本库（复刻 wangwendashuju.com/script 列表） -->
             <div v-else-if="cpMainTab==='script'" class="cp-book-toolbar cp-rank-slogan-bar">
-              <p class="cp-rank-slogan">灵境原创剧本集合，助力高效内容产出</p>
+              <p class="cp-rank-slogan">原创剧本集合，助力高效内容产出</p>
             </div>
           </div>
 
@@ -3937,7 +4054,7 @@
     </div>
   </div>
 
-  <!-- 一级菜单 · 页面需求说明 -->
+  <!-- 页面需求说明（主导航 + 子页：canvas/writing/script-eval 等） -->
   <button
     v-if="showPageReqTrigger"
     type="button"
@@ -3960,7 +4077,7 @@
     <div class="page-req-drawer__head" @mousedown="onPageReqDragStart">
       <div class="page-req-drawer__head-main">
         <h3 class="page-req-drawer__title">[{{ currentPageReqIndex }}] {{ pageReqDisplay.title || currentPageReqLabel }} · 页面需求说明</h3>
-        <p class="page-req-drawer__subtitle">主要功能 · 功能点 · 字段 · 需求规则 · 交互（可编辑并本地保存）</p>
+        <p class="page-req-drawer__subtitle">主要功能 · 功能点 · 字段 · 需求规则 · 交互（保存后写入 page-req-specs.js，刷新即生效）</p>
       </div>
       <button type="button" class="page-req-drawer__close" title="关闭" @mousedown.stop @click="closePageReqDrawer">×</button>
     </div>
@@ -4314,6 +4431,58 @@
     <template #footer><el-button @click="exchangeDialog=false">取消</el-button><el-button type="primary" @click="submitExchange">确认兑换</el-button></template>
   </el-dialog>
 
+  <!-- 邀请裂变 · 分享海报 -->
+  <el-dialog v-model="invitePosterDialog" title="分享海报" width="min(560px, 94vw)" align-center class="invite-poster-dialog">
+    <div class="invite-poster">
+      <div class="invite-poster__ribbon">🔥 限时邀请奖励 · 扫码立享双重好礼</div>
+      <div class="invite-poster__body">
+        <div class="invite-poster__spark invite-poster__spark--1"></div>
+        <div class="invite-poster__spark invite-poster__spark--2"></div>
+        <div class="invite-poster__brand">小提大作 · AI 创作变现平台</div>
+        <div class="invite-poster__hero">
+          <div class="invite-poster__hero-main">邀好友创作<br>躺赚分佣收益</div>
+          <div class="invite-poster__hero-sub">一人创作 · 双人受益 · 长期绑定分佣</div>
+        </div>
+        <div class="invite-poster__highlights">
+          <span class="invite-poster__pill invite-poster__pill--hot">最高 30% 返佣</span>
+          <span class="invite-poster__pill">新人赠 1000 米花</span>
+        </div>
+        <div class="invite-poster__stats">
+          <div class="invite-poster__stat"><strong>12,000+</strong><span>创作者已加入</span></div>
+          <div class="invite-poster__stat"><strong>¥3,150</strong><span>人均邀请收益</span></div>
+        </div>
+        <div class="invite-poster__user">
+          <div class="invite-poster__avatar">{{ (userProfile.nickname || '创').slice(0, 1) }}</div>
+          <div class="invite-poster__user-text">
+            <strong>{{ userProfile.nickname }} 送你专属邀请特权</strong>
+            <span>填写邀请码，新人礼包秒到账</span>
+          </div>
+        </div>
+        <div class="invite-poster__benefit-list">
+          <div class="invite-poster__benefit-item"><em>1</em>注册即领新人创作礼包，0门槛开跑</div>
+          <div class="invite-poster__benefit-item"><em>2</em>好友每次消费，你拿持续分佣收益</div>
+          <div class="invite-poster__benefit-item"><em>3</em>爆款作品可确权挂牌，打通变现闭环</div>
+        </div>
+        <div class="invite-poster__code">
+          <span class="label">{{ displayInviteCodeLabel }}</span>
+          <span class="code">{{ displayInviteCode }}</span>
+          <span class="hint">复制或扫码，邀请关系自动绑定</span>
+        </div>
+        <div class="invite-poster__scan-cta">👇 长按扫码 · 立即领取福利</div>
+        <div class="invite-poster__qr-wrap">
+          <div class="invite-poster__qr">
+            <img :src="invitePosterQr" alt="邀请二维码" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          </div>
+        </div>
+      </div>
+      <div class="invite-poster__footer"><strong>小提大作</strong> · 让每个人都能做大作 · 邀请越多，收益越久</div>
+    </div>
+    <template #footer>
+      <el-button @click="copyInviteCode(displayInviteCode)">复制邀请码</el-button>
+      <el-button type="primary" :loading="invitePosterSaving" @click="saveInvitePoster">保存图片</el-button>
+    </template>
+  </el-dialog>
+
   <!-- 发票弹窗 -->
   <el-dialog v-model="invoiceDialog" title="申请开票" width="420px">
     <el-form label-width="100px">
@@ -4510,6 +4679,9 @@
         cpRanking: (window.COPYRIGHT_DATA && window.COPYRIGHT_DATA.ranking) || [],
         cpFilterOptions: (window.COPYRIGHT_DATA && window.COPYRIGHT_DATA.filterOptions) || { preferenceOptions:[], longShortOptions:[], categoryOptions:[], completionStatusOptions:[] },
         settlementTab: 'copyright', popcornTab: 'all', copyrightTab: 'all', userSpaceTab: 'runs',
+        invitePosterDialog: false,
+        invitePosterSaving: false,
+        invitePosterQr: 'https://aixtdz.com/assets/images/qrcode_for_gh_e885d691702b_1280-BAiCcaKk.jpg',
         popcornTodayPending: true,
         tutorialDocKey: 'introduction',
         docNav: [
@@ -5075,6 +5247,15 @@
         if (phone.length >= 11) return phone.slice(0, 3) + '****' + phone.slice(-4);
         return phone || '未绑定';
       },
+      displayInviteCode() {
+        const premium = String(this.userProfile.premiumInviteCode || '').trim();
+        if (premium) return premium;
+        return String(this.userProfile.inviteCode || '').trim() || '000000';
+      },
+      displayInviteCodeLabel() {
+        const premium = String(this.userProfile.premiumInviteCode || '').trim();
+        return premium ? '靓号邀请码 · 限时有效' : '专属邀请码 · 限时有效';
+      },
       filteredInspiration() {
         const q = this.inspSearch.trim().toLowerCase();
         if (!q) return this.inspiration;
@@ -5260,13 +5441,18 @@
         return '留下信息，我们尽快联系您';
       },
       showPageReqTrigger() {
-        return this.nav.some((it) => it.key === this.active);
+        const keys = window.PAGE_REQ_TRIGGER_KEYS || this.nav.map((it) => it.key);
+        return keys.includes(this.active);
       },
       currentPageReqLabel() {
+        const meta = window.PAGE_REQ_META && window.PAGE_REQ_META[this.active];
+        if (meta && meta.label) return meta.label;
         const item = this.nav.find((it) => it.key === this.active);
-        return item ? item.label : '';
+        return item ? item.label : this.active;
       },
       currentPageReqIndex() {
+        const meta = window.PAGE_REQ_META && window.PAGE_REQ_META[this.active];
+        if (meta && meta.no != null) return meta.no;
         const idx = this.nav.findIndex((it) => it.key === this.active);
         return idx >= 0 ? idx + 1 : 1;
       },
@@ -5362,15 +5548,8 @@
         };
       },
       loadPageReqSpec() {
-        const pageKey = this.active;
-        const defaults = this.getPageReqDefaults(pageKey);
-        const prefix = window.PAGE_REQ_STORAGE_PREFIX || 'aixt-demo-page-req:';
-        let saved = null;
-        try {
-          const raw = localStorage.getItem(prefix + pageKey);
-          if (raw) saved = JSON.parse(raw);
-        } catch (e) { /* ignore corrupt cache */ }
-        this.pageReqContent = saved ? { ...defaults, ...saved } : { ...defaults };
+        const defaults = this.getPageReqDefaults(this.active);
+        this.pageReqContent = { ...defaults };
         this.pageReqDraft = null;
         this.pageReqEditing = false;
       },
@@ -5391,15 +5570,33 @@
         this.pageReqEditing = false;
         this.pageReqDraft = null;
       },
-      savePageReqSpec() {
+      async savePageReqSpec() {
         if (!this.pageReqDraft) return;
+        const pageKey = this.active;
         this.pageReqContent = { ...this.pageReqDraft };
-        const prefix = window.PAGE_REQ_STORAGE_PREFIX || 'aixt-demo-page-req:';
+        if (window.PAGE_REQ_SPECS) {
+          window.PAGE_REQ_SPECS[pageKey] = { ...this.pageReqContent };
+        }
         try {
-          localStorage.setItem(prefix + this.active, JSON.stringify(this.pageReqContent));
-          ElementPlus.ElMessage.success('页面需求说明已保存');
+          const res = await fetch('/api/page-req-specs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pageKey, spec: this.pageReqContent }),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.ok) {
+            ElementPlus.ElMessage.success('页面需求说明已保存到 page-req-specs.js，刷新后仍生效');
+          } else {
+            throw new Error(data.error || '保存失败');
+          }
         } catch (e) {
-          ElementPlus.ElMessage.error('保存失败，请检查浏览器存储权限');
+          const prefix = window.PAGE_REQ_STORAGE_PREFIX || 'aixt-demo-page-req:';
+          try {
+            localStorage.setItem(prefix + pageKey, JSON.stringify(this.pageReqContent));
+            ElementPlus.ElMessage.warning('已暂存到浏览器（请用 serve-dev.sh 启动 Demo 以同步到 git 文件）');
+          } catch (err) {
+            ElementPlus.ElMessage.error('保存失败，请检查浏览器存储或服务是否启动');
+          }
         }
         this.pageReqEditing = false;
         this.pageReqDraft = null;
@@ -5459,6 +5656,268 @@
       goSettlementPopcorn() {
         this.settlementTab = 'popcorn';
         this.go('settlement');
+      },
+      openInvitePoster() {
+        this.invitePosterDialog = true;
+      },
+      renderInvitePosterCanvas() {
+        const W = 750;
+        const H = 1334;
+        const nickname = this.userProfile.nickname || '创作者';
+        const inviteCode = this.displayInviteCode;
+        const inviteCodeLabel = this.displayInviteCodeLabel;
+        const canvas = document.createElement('canvas');
+        canvas.width = W;
+        canvas.height = H;
+        const ctx = canvas.getContext('2d');
+        const bg = ctx.createLinearGradient(0, 0, W, H);
+        bg.addColorStop(0, '#12081f');
+        bg.addColorStop(0.38, '#241544');
+        bg.addColorStop(0.72, '#1a0f2e');
+        bg.addColorStop(1, '#0d0714');
+        ctx.fillStyle = bg;
+        ctx.fillRect(0, 0, W, H);
+        const drawOrb = (x, y, r, color) => {
+          const orb = ctx.createRadialGradient(x, y, 0, x, y, r);
+          orb.addColorStop(0, color);
+          orb.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.fillStyle = orb;
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2);
+          ctx.fill();
+        };
+        drawOrb(W - 40, 120, 150, 'rgba(245,185,66,.28)');
+        drawOrb(60, H - 180, 110, 'rgba(123,108,246,.24)');
+        const ribbonGrd = ctx.createLinearGradient(0, 0, W, 0);
+        ribbonGrd.addColorStop(0, '#ffd36a');
+        ribbonGrd.addColorStop(0.45, '#ffb347');
+        ribbonGrd.addColorStop(1, '#ff8f5a');
+        ctx.fillStyle = ribbonGrd;
+        ctx.fillRect(0, 0, W, 72);
+        ctx.fillStyle = '#2a1808';
+        ctx.font = 'bold 28px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('🔥 限时邀请奖励 · 扫码立享双重好礼', W / 2, 46);
+        let y = 108;
+        ctx.fillStyle = 'rgba(255,255,255,.58)';
+        ctx.font = '600 22px sans-serif';
+        ctx.fillText('小提大作 · AI 创作变现平台', W / 2, y);
+        y += 52;
+        const titleGrd = ctx.createLinearGradient(W / 2, y, W / 2, y + 120);
+        titleGrd.addColorStop(0, '#ffffff');
+        titleGrd.addColorStop(0.72, '#ffe7a8');
+        titleGrd.addColorStop(1, '#f5b942');
+        ctx.fillStyle = titleGrd;
+        ctx.font = '900 64px sans-serif';
+        ctx.fillText('邀好友创作', W / 2, y + 58);
+        ctx.fillText('躺赚分佣收益', W / 2, y + 132);
+        y += 168;
+        ctx.fillStyle = '#ffcf73';
+        ctx.font = 'bold 28px sans-serif';
+        ctx.fillText('一人创作 · 双人受益 · 长期绑定分佣', W / 2, y);
+        y += 42;
+        const drawPill = (text, x, pillW, hot) => {
+          const h = 44;
+          if (hot) {
+            const pg = ctx.createLinearGradient(x, y, x + pillW, y);
+            pg.addColorStop(0, '#ffe08a');
+            pg.addColorStop(1, '#ffb84d');
+            ctx.fillStyle = pg;
+            ctx.fillStyle = pg;
+          } else {
+            ctx.fillStyle = 'rgba(255,255,255,.08)';
+          }
+          this.roundRect(ctx, x, y - 30, pillW, h, 22);
+          ctx.fill();
+          if (!hot) {
+            ctx.strokeStyle = 'rgba(255,207,115,.28)';
+            ctx.stroke();
+          }
+          ctx.fillStyle = hot ? '#2a1808' : '#fff';
+          ctx.font = 'bold 22px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(text, x + pillW / 2, y - 2);
+        };
+        drawPill('最高 30% 返佣', 120, 220, true);
+        drawPill('新人赠 1000 米花', 370, 260, false);
+        y += 34;
+        const statW = 300;
+        const statGap = 30;
+        const statStart = (W - statW * 2 - statGap) / 2;
+        [
+          ['12,000+', '创作者已加入'],
+          ['¥3,150', '人均邀请收益'],
+        ].forEach((item, i) => {
+          const x = statStart + i * (statW + statGap);
+          ctx.fillStyle = 'rgba(255,255,255,.05)';
+          this.roundRect(ctx, x, y, statW, 88, 18);
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(255,255,255,.08)';
+          ctx.stroke();
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#f5b942';
+          ctx.font = '900 34px sans-serif';
+          ctx.fillText(item[0], x + statW / 2, y + 40);
+          ctx.fillStyle = 'rgba(255,255,255,.62)';
+          ctx.font = '20px sans-serif';
+          ctx.fillText(item[1], x + statW / 2, y + 72);
+        });
+        y += 112;
+        const userW = W - 120;
+        const userX = 60;
+        const userGrd = ctx.createLinearGradient(userX, y, userX + userW, y);
+        userGrd.addColorStop(0, 'rgba(123,108,246,.18)');
+        userGrd.addColorStop(1, 'rgba(245,185,66,.1)');
+        ctx.fillStyle = userGrd;
+        this.roundRect(ctx, userX, y, userW, 88, 20);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,.1)';
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(userX + 44, y + 44, 28, 0, Math.PI * 2);
+        const avatarGrd = ctx.createLinearGradient(userX + 16, y + 16, userX + 72, y + 72);
+        avatarGrd.addColorStop(0, '#7b6cf6');
+        avatarGrd.addColorStop(1, '#b78bff');
+        ctx.fillStyle = avatarGrd;
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 26px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(nickname.slice(0, 1), userX + 44, y + 52);
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 26px sans-serif';
+        const userTitle = nickname + ' 送你专属邀请特权';
+        ctx.fillText(userTitle.length > 16 ? userTitle.slice(0, 16) + '…' : userTitle, userX + 88, y + 40);
+        ctx.fillStyle = 'rgba(255,255,255,.62)';
+        ctx.font = '20px sans-serif';
+        ctx.fillText('填写邀请码，新人礼包秒到账', userX + 88, y + 68);
+        y += 108;
+        const benefits = [
+          '注册即领新人创作礼包，0门槛开跑',
+          '好友每次消费，你拿持续分佣收益',
+          '爆款作品可确权挂牌，打通变现闭环',
+        ];
+        benefits.forEach((text, i) => {
+          const rowY = y + i * 52;
+          ctx.fillStyle = 'rgba(0,0,0,.18)';
+          this.roundRect(ctx, 60, rowY, W - 120, 44, 12);
+          ctx.fill();
+          ctx.strokeStyle = 'rgba(255,255,255,.06)';
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(88, rowY + 22, 14, 0, Math.PI * 2);
+          const badgeGrd = ctx.createLinearGradient(74, rowY + 8, 102, rowY + 36);
+          badgeGrd.addColorStop(0, '#ffe08a');
+          badgeGrd.addColorStop(1, '#f5b942');
+          ctx.fillStyle = badgeGrd;
+          ctx.fill();
+          ctx.fillStyle = '#2a1808';
+          ctx.font = 'bold 18px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(String(i + 1), 88, rowY + 28);
+          ctx.textAlign = 'left';
+          ctx.fillStyle = 'rgba(255,255,255,.82)';
+          ctx.font = '22px sans-serif';
+          ctx.fillText(text, 112, rowY + 28);
+        });
+        y += 176;
+        const codeH = 156;
+        const codeGrd = ctx.createLinearGradient(60, y, 60, y + codeH);
+        codeGrd.addColorStop(0, 'rgba(245,185,66,.16)');
+        codeGrd.addColorStop(1, 'rgba(245,185,66,.06)');
+        ctx.fillStyle = codeGrd;
+        this.roundRect(ctx, 60, y, W - 120, codeH, 22);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(245,185,66,.34)';
+        ctx.stroke();
+        ctx.textAlign = 'center';
+        ctx.fillStyle = 'rgba(255,255,255,.58)';
+        ctx.font = 'bold 22px sans-serif';
+        ctx.fillText(inviteCodeLabel, W / 2, y + 36);
+        ctx.fillStyle = '#ffd76a';
+        ctx.font = '900 60px sans-serif';
+        ctx.fillText(inviteCode, W / 2, y + 96);
+        ctx.fillStyle = 'rgba(255,255,255,.5)';
+        ctx.font = '20px sans-serif';
+        ctx.fillText('复制或扫码，邀请关系自动绑定', W / 2, y + 132);
+        y += 182;
+        const ctaW = 420;
+        const ctaX = (W - ctaW) / 2;
+        const ctaGrd = ctx.createLinearGradient(ctaX, y, ctaX + ctaW, y);
+        ctaGrd.addColorStop(0, '#ffe08a');
+        ctaGrd.addColorStop(1, '#ffb84d');
+        ctx.fillStyle = ctaGrd;
+        this.roundRect(ctx, ctaX, y, ctaW, 48, 24);
+        ctx.fill();
+        ctx.fillStyle = '#2a1808';
+        ctx.font = 'bold 24px sans-serif';
+        ctx.fillText('👇 长按扫码 · 立即领取福利', W / 2, y + 32);
+        y += 72;
+        const qrSize = 250;
+        const qrX = (W - qrSize) / 2;
+        ctx.fillStyle = '#fff';
+        this.roundRect(ctx, qrX, y, qrSize, qrSize, 22);
+        ctx.fill();
+        ctx.shadowColor = 'rgba(0,0,0,.28)';
+        ctx.shadowBlur = 18;
+        ctx.shadowOffsetY = 8;
+        ctx.fill();
+        ctx.shadowColor = 'transparent';
+        ctx.shadowBlur = 0;
+        ctx.shadowOffsetY = 0;
+        return new Promise((resolve) => {
+          const finish = (qrDrawn) => {
+            if (!qrDrawn) {
+              ctx.strokeStyle = 'rgba(0,0,0,.12)';
+              ctx.strokeRect(qrX + 22, y + 22, qrSize - 44, qrSize - 44);
+              ctx.fillStyle = 'rgba(0,0,0,.45)';
+              ctx.font = '24px sans-serif';
+              ctx.textAlign = 'center';
+              ctx.fillText('扫码邀请', W / 2, y + qrSize / 2 + 8);
+            }
+            ctx.fillStyle = 'rgba(255,255,255,.55)';
+            ctx.font = '22px sans-serif';
+            ctx.fillText('小提大作 · 让每个人都能做大作 · 邀请越多，收益越久', W / 2, y + qrSize + 48);
+            resolve(canvas.toDataURL('image/png'));
+          };
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.referrerPolicy = 'no-referrer';
+          img.onload = () => {
+            ctx.drawImage(img, qrX + 18, y + 18, qrSize - 36, qrSize - 36);
+            finish(true);
+          };
+          img.onerror = () => finish(false);
+          img.src = this.invitePosterQr;
+        });
+      },
+      roundRect(ctx, x, y, w, h, r) {
+        const radius = Math.min(r, w / 2, h / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.arcTo(x + w, y, x + w, y + h, radius);
+        ctx.arcTo(x + w, y + h, x, y + h, radius);
+        ctx.arcTo(x, y + h, x, y, radius);
+        ctx.arcTo(x, y, x + w, y, radius);
+        ctx.closePath();
+      },
+      async saveInvitePoster() {
+        this.invitePosterSaving = true;
+        try {
+          const dataUrl = await this.renderInvitePosterCanvas();
+          const a = document.createElement('a');
+          a.href = dataUrl;
+          a.download = `小提大作-邀请海报-${this.displayInviteCode}.png`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          ElementPlus.ElMessage.success('海报已保存到本地');
+        } catch (e) {
+          ElementPlus.ElMessage.error('保存失败，请稍后重试');
+        } finally {
+          this.invitePosterSaving = false;
+        }
       },
       openContactUs() {
         this.resetContactDialog();

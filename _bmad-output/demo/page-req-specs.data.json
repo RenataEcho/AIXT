@@ -1,0 +1,238 @@
+{
+  "specs": {
+    "showcase": {
+      "title": "影片大赏",
+      "mainFunctions": "作品展示广场与创作社区入口（导航首项）。展示 IP 与影片成片，支持三维筛选，承载引流与「可复盘创作过程」价值主张。计划版本：v1.0 展示/搜索；v1.2 完整互动与复盘。",
+      "functionPoints": "- Hero 区：全屏背景图轮播 + 固定 Slogan 文案（showcaseHeroSlides[] 纯 URL 数组）\n- 三维搜索：类型 / 作者名称 / 标题，前端即时过滤\n- 海报作品网格：封面、标题、作者、点赞/收藏/分享/翻拍等元数据\n- 作者信息区（v1.2）：头像、VIP 标识、简介 desc、属地 meta\n- 目标态（v1.2）：赞/藏/评/享/关五种互动；评论需审核；未登录弹登录后补执行\n- 目标态（v1.2）：从成片反向复盘分镜/选题/Agent，跳转市场",
+      "fields": "- showcaseSearch: { type, author, title }\n- showcaseHeroSlides[]: string[]（图片 URL）\n- showcaseHeroIdx: number\n- posterWorks[]: { n, author, avatar, vip, cover, desc, meta, like, cmt, fav, share, remake, type }",
+      "rules": "- 筛选为空时展示全部作品\n- 卡片封面缺失时使用渐变占位\n- Hero 可手动左右切换，索引循环\n- 互动类能力 v1.2 上线；Demo 为展示态\n- 作品数据来源于大赏内容池（Demo 静态样例）",
+      "interactions": "- Hero 左右切换：更新 showcaseHeroIdx\n- 输入筛选条件：实时过滤 poster-grid\n- 点击作品卡片：❓ v1.2 跳转详情/复盘页待确认\n- 点击作者区：❓ v1.2 进入作者主页待确认\n- 点赞/收藏等：❓ v1.2 需登录"
+    },
+    "prompts": {
+      "title": "共享 Agent",
+      "mainFunctions": "共享 Agent / 提示词库（导航 label「Agent」）。按封面/视频/写作/剧本分类浏览、搜索、复制 prompt，支撑各创作阶段一键调用。计费：部分标注 paid。计划：v1.0 浏览复制；v1.1 UI 增强；v1.2 创作阶段调用与付费统计。",
+      "functionPoints": "- 页头：「共享 Agent」+ 描述；工作流页式 layout\n- 一级 Tab：封面 / 视频 / 写作 / 剧本；切换可重置二级 subKey\n- 二级题材 Chips：promptFamilies 配置\n- 关键字搜索：过滤当前 Tab 卡片\n- 卡片流：code、title、genre、hot、tags、封面、双角标（左免费/付费，右题材/标签）\n- video Tab 卡片 overlay ▶ 播放图标\n- 点击卡片：直接打开 promptDetailDialog（完整 prompt + 封面 + 复制）\n- 历史记录入口（v1.2 Demo 占位 interact）",
+      "fields": "- promptMode: cover | video | writing | script\n- promptSubKey: string\n- promptSearch: string\n- selectedPromptId, promptDetailItem\n- 卡片：id, code, title, genre, cat, key, img, hot, tags[], paid, prompt\n- 数据源：PROMPT_LIBRARY_DATA（prompt-library-data.js）",
+      "rules": "- 切换一级 Tab 重置或保留 subKey（Demo 保留若存在）\n- 搜索为空展示当前分类全部\n- 无数据：「当前分类暂无内容」空态\n- 付费/免费角标由 item.paid 决定\n- 复制 prompt 供写作/画布/SOP 各阶段引用",
+      "interactions": "- Tab / Chip / 搜索：过滤 promptStreamItems\n- 点击卡片：open promptDetailDialog + selectPromptItem\n- Hover：展示标题/分类/描述浮层\n- 详情弹窗：一键复制 prompt\n- 历史记录：Demo toast 占位"
+    },
+    "copyright": {
+      "title": "文创版权",
+      "mainFunctions": "版权/文创交易中心。小说版权库 + 剧本版权库（WWDS 评估）+ 商务对接 + 确权挂牌入口。连接版权方与承制方，支撑「创作→确权→授权→分成」闭环。计划：v1.0 双库浏览申领；v1.1 落地页/投稿/详情增强；v1.2 爆榜 Tab。",
+      "functionPoints": "- 落地页（v1.1）：Hero 轮播 + 编剧投稿 / 作家发布双入口卡\n- 主 Tab：小说版权 | 剧本版权；顶栏「我的申请」\n- 小说：书名搜索 + 五维下拉胶囊筛选（偏好/篇幅/类型/完结/版权方）+ 排序 + 宫格\n- 小说卡片：完本/未完本角标；hover 商务信息（独家/非独家/价格/分成/询价）\n- 小说点击：cpBookDetailDialog 占位（v1.1 真实详情待做）\n- 询价：cpInquiryDialog 商务二维码\n- 剧本：搜索 + 宫格 → 页内 WWDS 全屏详情（非弹窗）\n- 剧本详情 Tab：概览 / 改编潜力 / 受众与风险 / 完整报告；六维 W/I/H/G/R/V\n- 申领剧本：cpScriptClaimDialog 商务二维码\n- 剧本 Tab Slogan 文案条；返回顶部浮动按钮\n- 爆榜（v1.2）：cpRanking[] UI 已有，Tab 入口待接入",
+      "fields": "- cpMainTab: novel | script\n- cpNovelQuery: { bookName, preference, longShort, category, completionStatus, copyrightOwner }\n- cpScriptQuery: { bookName }\n- cpBooks[]: id, title, author, wordCount, exclusiveLabel, cooperation[], isComplete, maxProductionRevenue, shelfDate\n- cpScripts[]: { id, title, tags[], coverUrl }\n- cpScriptDetailId, cpScriptDetailTab, cpScriptDetail（WWDS 详情）\n- cpProviders[], cpRanking[], cpBanners[]: { brand, sub, cta, img, action }",
+      "rules": "- 离开 copyright 页清除 cpScriptDetailId\n- 详情不存在显示空态\n- 筛选/排序为前端过滤（copyright-data.js）\n- 申领/询价必须展示联系二维码\n- 写作一键确权跳转本模块（见 writing 页）\n- 爆榜 rank Tab：cpMainTabs 待补 rank 项（v1.2）",
+      "interactions": "- Tab 切换：novel / script 库\n- 筛选/查询：刷新宫格\n- 点击剧本卡片：cpScriptDetailId 进入 wwds-detail-page\n- 详情内 Tab：锚点滚动 cpScriptSectionEls\n- 申领/询价：打开二维码弹窗\n- 返回：cpBackFromScriptDetail\n- 投稿入口：cpOpenEntrance → 切换 Tab 或 toast"
+    },
+    "tools": {
+      "title": "工具",
+      "mainFunctions": "AI 辅助工具箱（对齐大作联盟 ideas）。7 项独立工具：评估、拆解、链接提取类；支撑剧本评估→文创上架、视频结构→写作桥接。计划版本 v1.1 全量交付。",
+      "functionPoints": "**工具箱首页**\n- 7 卡网格：01–07 序号 + SVG 封面 + 标题/描述/使用人数\n- 点击：全页工具（eval/breakdown）或弹窗工具（extract 类）\n\n**① 剧本评估 script-eval（全页）**\n- 左：粘贴剧本 + 模型/质量标准/preset（标准/强逻辑/审核增强/自定义）\n- 右：WWDS 报告 Tab（概览/红线/改编/受众/完整报告）\n- 六维雷达 SVG；红线扫描（严重/风险/安全/结论）\n- 立即评估、复制报告、提交审核\n\n**② 剧本拆解 script-breakdown（全页）**\n- 三栏：集列表（添加/重分析/删除）| 视频+梗概 | 分场景脚本\n- 标准/国际格式；复制脚本\n\n**③ 提示词提取 prompt-extract（弹窗）**\n- 链接→blocks + visuals；合并复制\n\n**④ 视频结构提取 video-structure（弹窗）**\n- 21 章 Agent 细纲 + flow；「用细纲写剧本」→ writing\n\n**⑤ 音色音效提取 audio-extract（弹窗）**\n- 波形 + 时间轴 blocks\n\n**⑥ 素材资产提取 asset-extract（弹窗）**\n- 人物/场景/道具/复用包四列卡片\n\n**⑦ 账号视觉IP提取 visual-ip-agent（弹窗）**\n- 风格拆解→数字 IP + 提示词 + 封面 5 条 + 画廊",
+      "fields": "- WORKBENCH_TOOLS.tools[]: { id, title, desc, users, cover, page? }\n- toolLink, toolResult, toolRunning\n- scriptEval*: model, quality, preset, scriptEvalResult, redlineScan\n- sbProject.episodes[], scenes[].lines[]\n- 数据源：tools-data.js, wwds-script-data.js",
+      "rules": "- 工具按 tools-data.js 渲染\n- 使用中 toolRunning 锁，禁止重复提交\n- 子页 active=script-eval | script-breakdown；tools nav 仍高亮\n- 评估提交审核后可进入文创剧本库（运营流）\n- 视频结构细纲跳转 writing 页",
+      "interactions": "- 点击卡片：openTool → go 子页或 toolDialog\n- script-eval/breakdown：独立全屏；返回 go(tools)\n- 弹窗：输入链接→生成→复制→提交审核（Demo interact）\n- video-structure：「用细纲写剧本」→ go(writing)"
+    },
+    "projects": {
+      "title": "创作",
+      "mainFunctions": "项目 hub / 生产总入口。**Demo 默认 landing 页**（active=projects，2026-07-07 由 home 调整）。四 Tab 分流：自由画布 / SOP画布 / 写作 / 剧本。Banner 引流 + 各轨独立项目池 + 统一创建入口 enterProjEntry。计划：v1.0 hub；v1.1 四 Tab + SOP 入口。",
+      "functionPoints": "- 3D Banner：brand/sub/cta/img/action 图片轮播；CTA 可跳 canvas\n- **四 Tab**（2026-07-07）：自由画布 | SOP画布 | 写作 | 剧本\n- 各 Tab 独立项目宫格 + 首张「开始创作」卡\n- **enterProjEntry 统一入口**：\n  · 自由画布 Tab → createModeDialog 提示现有画布流程\n  · SOP画布 Tab → go(canvas, { sopOnly: true })\n  · 写作 Tab → go(writing) 完整编辑器\n  · 剧本 Tab → go(writing, { placeholder: true, entryFrom: script }) 占位页\n- SOP 独立项目池 sopCanvasProjects[]\n- 子页详见：canvas（5-1）、writing（5-2）页面需求说明",
+      "fields": "- projTab: film | sop | writing | script\n- filmProjects[], sopCanvasProjects[], writingProjects[], scriptProjects[]\n- projBanners[]: { brand, sub, cta, img, action }\n- projCreateConfig: { label, mode } per Tab\n- enterProjEntry(), createModeDialog, createModeMessage",
+      "rules": "- Tab 切换改变 currentGridProjects 数据源\n- SOP Tab 进入 canvas 时 canvasSopOnly=true，隐藏自由/SOP 切换\n- 写作/剧本 Tab 占位态：writingPlaceholder=true，隐藏编辑器与确权\n- 自由画布 Tab 不直接进入 canvas，先弹窗说明\n- 空项目仍展示「开始创作」卡\n- projListDialog 已无 UI 入口（遗留代码）",
+      "interactions": "- Banner CTA / 轮播：可配置跳转\n- Tab 点击：切换 projTab\n- 项目卡 / 创建卡：enterProjEntry\n- SOP Tab：canvas(sopOnly)\n- 写作 Tab：writing 完整页\n- 剧本 Tab：writing 占位页"
+    },
+    "canvas": {
+      "title": "影片制作·画布/SOP",
+      "mainFunctions": "漫剧/短剧视频制作核心。双模式：SOP 引导流水线（大作联盟七步）+ 自由节点画布；共享同一份项目数据。计费：🍿 爆米花。计划：v1.0 SOP 核心七步；v1.1 3D 角色/ArchViz 场景/断点续跑/计费。",
+      "functionPoints": "**模式**\n- canvasSopOnly=true（从创作 SOP Tab）：仅 SOP，隐藏 Radio\n- 否则：SOP / 自由画布 Radio 切换\n- 页标题「影片制作」+ badge「融合大作联盟创作流程」\n\n**SOP 七步**（选题→风格→剧本→分镜→人物→场景→合成视频）\n0 选题：类型 Radio + 题材 Tag 多选 + 自定义 + AI 生成选题卡片\n1 风格：多选 styleTags + 风格图预览 + 主风格\n2 剧本：分场导航 + 双 textarea 自定义\n3 分镜：可调数量 Excel 表（seq/chars/props/duration/content）\n4 人物：**3D 角色设定工作室**（三视图/表情/Yaw/Pitch/Roll/Zoom/光位/焦距）\n5 场景：**ArchViz 摄影机矩阵**（九宫格机位/DOF/曝光/白平衡）\n6 合成：sopEnteredCanvas 注入节点链摘要 + 锁定 Tag\n- 每步：生成/自定义/上一步/下一步/失败重试；底栏「预估消耗 🍿 N」\n- 严格 gate：前序未完成锁定后序\n\n**自由画布**（!canvasSopOnly && canvasMode=free）\n- 节点链：小说转剧本→分镜→生图→图生视频→场景调度\n- 与 SOP 产物共享项目数据",
+      "fields": "- canvasMode: sop | free; canvasSopOnly: boolean\n- sopSteps[7], sopActive, sopFilmType, sopSelectedGenres[], sopTopicResults[]\n- sopSelectedStyles[], sopStyleResults[], sopScriptScenes[], sopStoryboardRows[]\n- sopCharacterRows[], pose3d{}, views{}, expressions[]\n- sopSceneRows[], cameraGrid[], sopEnteredCanvas\n- SOP_WORKFLOW_DATA（sop-workflow-data.js）",
+      "rules": "- 前序 SOP 步骤 completed 才解锁后序\n- 失败可 retry，断点续跑保留已完成产物（v1.1 生产化）\n- 人物/场景锁定后进入视频阶段（缺项不得进视频）\n- 余额不足阻断生成并引导充值（getCost）\n- 标准目录：01_剧本…06_风格",
+      "interactions": "- SOP 步骤条点击（若允许）/ 上一步 / 下一步 / 重试\n- 3D 人物/场景 Slider 与拖动预览\n- 合成完成：sopEnteredCanvas 展示节点摘要\n- 导出成片：❓ 接大赏/文创（Demo 展示态）"
+    },
+    "writing": {
+      "title": "写作编辑器",
+      "mainFunctions": "结构化小说/文本创作。章节目录→正文→AI 助手；导出全文；一键确权挂牌→文创。计费：🌽 米花。含**占位态**（剧本 Tab 入口）。计划 v1.0。",
+      "functionPoints": "**完整编辑态**（writingPlaceholder=false）\n- 顶栏：作品名 + 一键确权挂牌 + 导出全文\n- 左栏：章节目录树\n- 中栏：章节正文编辑器\n- 右栏 AI 助手：写作风格；生成大纲/细纲/正文/重写\n\n**占位态**（writingPlaceholder=true，剧本 Tab 进入）\n- 隐藏编辑器、确权、导出\n- 展示「沿用现有写作流程 + A/B 优化方向」说明\n- writingEntryFrom=script 标识来源",
+      "fields": "- chapters[]: { id, title, wordCount }\n- chapterTitle, draftText, writeStyle\n- writingPlaceholder: boolean\n- writingEntryFrom: script | null",
+      "rules": "- 写作 AI 消耗米花\n- 确权跳转 go(copyright)\n- 占位态仅引导，不消耗计费\n- Mock 作品：《凡人修仙诀》",
+      "interactions": "- 章节切换：更新 draftText\n- AI 按钮：生成/重写（消耗米花）\n- 一键确权：go(copyright)\n- 导出全文：下载 TXT/DOCX（沿用线上能力）"
+    },
+    "script-eval": {
+      "title": "剧本评估",
+      "mainFunctions": "WWDS 六维剧本评估全页工具（tools 子页）。粘贴剧本→生成评级报告→可复制/提交审核→可上架文创剧本库。计划 v1.1。",
+      "functionPoints": "- 左栏：剧本文本 + 模型 + 质量标准 + 提示词 preset\n- 右栏报告 Tab：概览 / 红线 / 改编 / 受众 / 完整报告\n- 概览：评级、综合分、六维雷达 SVG、题材稀缺度\n- 红线：严重/风险/安全/结论四级\n- 自定义提示词弹窗 scriptEvalCustomDialog\n- 底部：复制报告、提交审核",
+      "fields": "- scriptEvalInput, scriptEvalPromptPreset, scriptEvalCustomPrompt\n- scriptEvalResult: { work, marketPosition, adaptation, redlineScan, fullReport }\n- scriptEvalReviewSubmitted",
+      "rules": "- 评估中 scriptEvalRunning 锁\n- Demo 可预载 buildScriptEvalDemo()\n- 提交审核为 Demo interact 占位",
+      "interactions": "- 立即评估：异步生成报告\n- Tab 切换：报告分区\n- 提交审核 / 复制报告"
+    },
+    "script-breakdown": {
+      "title": "剧本拆解",
+      "mainFunctions": "分集视频→分场景脚本拆解全页工具。三栏工作台，支持标准/国际格式。计划 v1.1。",
+      "functionPoints": "- 左栏：分集列表；添加集/重分析/删除集\n- 中栏：视频预览 mock + 时长 + 梗概\n- 右栏：分场景脚本（dialogue/action lines）\n- 格式切换：标准 / 国际；复制脚本\n- Demo 项目：《IF》5 集",
+      "fields": "- sbProject: { projectTitle, episodes[] }\n- episode: { poster, summary, duration, scenes[] }\n- scene.lines[]: { type, speaker, time, text }\n- sbScriptFormat, sbPlaying",
+      "rules": "- 离开页时 stopSbPlay\n- tools nav 高亮",
+      "interactions": "- 选集：切换右栏脚本\n- 播放控制 mock\n- 复制脚本到剪贴板"
+    },
+    "assets": {
+      "title": "创作资产",
+      "mainFunctions": "写作与画布共享素材库。角色/场景/模型/我的审核四 Tab。计划：v1.0 三库浏览；v1.1 审核流+锁定规则。",
+      "functionPoints": "- Tab：角色库 / 场景库 / 模型库 / 我的审核\n- 角色卡片：名称、参考图、描述；供 SOP/写作引用\n- 场景/模型：示例或空态\n- 我的审核（v1.1）：待审资产/授权表格；通过/打回",
+      "fields": "- assetTab: role | scene | model | audit\n- 角色：name, avatar, desc\n- 审核行：资产名, 类型, 提交人, 状态",
+      "rules": "- 资产在写作与画布/SOP 间共享\n- 审核 warning Tag；通过/打回 Demo 无后端\n- 空库 el-empty 文案",
+      "interactions": "- Tab：assetTab\n- 角色卡：❓ 详情/编辑 v1.1\n- 审核：通过/打回按钮"
+    },
+    "settlement": {
+      "title": "结算中心",
+      "mainFunctions": "收益与虚拟货币统一出口。版权分成 + 爆米花账户 + 提现。Nav 角标 **「有新收益」**（badgeType=earn，navBadgeClass 区分样式）。提现为本期新建（决策④）。计划：v1.0 三 Tab+提现；v1.1 分佣入结算+爆米花六类子 Tab。",
+      "functionPoints": "- 概览三卡：累计收益 / 已提现 / 可提现（立即提现按钮）\n- **邀请裂变 Banner**：点击打开分享海报弹窗\n- Tab：版权结算 | 爆米花 | 提现记录\n- 版权：四维 breakdown + 筛选 + 明细（revenueType, createdAt）\n- 爆米花：余额构成(充/赠/赚) + **六类子 Tab**（全部/consume/buy/obtain/earn/exchange）+ 兑换 + **立即购买**\n- 提现记录：7 列（手续费/实际到账/备注/已拒绝态）\n- 弹窗：withdrawDialog / exchangeDialog / invitePosterDialog（保存海报图片）\n- 底部栏爆米花快捷：goSettlementPopcorn → 本页 popcorn Tab",
+      "fields": "- settlementTab: copyright | popcorn | withdraw\n- copyrightTab, popcornTabs[], popcornTransactions[].category\n- withdrawableBalance, withdrawRecords[]: { time, amount, fee, actual, method, status, remark }\n- exchangeRate: 10（赚取爆米花兑可提现余额）\n- invitePosterDialog / invitePosterQr / displayInviteCode（有靓号优先展示 premiumInviteCode）",
+      "rules": "- 仅赚取部分爆米花可 10:1 兑换\n- 提现校验余额与手续费（规则待财税确认）\n- 状态 Tag：success / warning / danger\n- 邀请分佣并入结算（v1.1，沿用现有分佣链路）\n- 分享海报含邀请码 + 二维码，支持保存 PNG",
+      "interactions": "- Tab / 子 Tab 切换筛选\n- 邀请裂变 Banner → openInvitePoster → 保存图片 / 复制邀请码\n- 立即提现 / 兑换为元 / 立即购买\n- 底部 🍿 快捷入口"
+    },
+    "userspace": {
+      "title": "个人空间",
+      "mainFunctions": "个人中心（底部栏头像入口）。账号管理 + Agent 运行轨迹。大作联盟 user-space 风格壳层。计划：v1.0 基础；v1.2 Hub/任务/存档扩展。",
+      "functionPoints": "- Tab：运行记录 | 个人设置\n- **运行记录 Hub**（v1.2）：5 类 Agent 分组卡片（消耗/文本/视觉/画布视频/质检）\n- 运行明细：agentName、duration、tokens、project、outputSummary、继续运行/查看结果\n- 个人设置：头像/昵称/身份/邀请码/靓号/手机；分项弹窗编辑\n- 扩展（v1.2 数据已有 UI 未渲染）：历史存档/积分任务/互动分组",
+      "fields": "- userSpaceTab: runs | settings\n- userProfile: { nickname, avatar, identity, inviteCode, premiumInviteCode, phone, tier, points }\n- userAgentRuns[], userRunGroups[]\n- userArchives[], userSpaceTasks[]（v1.2）",
+      "rules": "- 身份(签约/合伙人)平台授予不可自改\n- 邀请码支撑分佣裂变\n- 扩展 Tab v1.2 上线",
+      "interactions": "- 头像/昵称/手机/密码：各 profile*Dialog\n- 运行记录：分组 Hub → 明细列表"
+    },
+    "tutorial": {
+      "title": "教程中心",
+      "mainFunctions": "帮助文档（底部栏）。6 篇：产品介绍/快速开始/创作指南/功能说明/社群玩法/FAQ。游客可见，承担引流教育。",
+      "functionPoints": "- 左侧 docNav 6 项\n- 右侧对应文档正文（步骤列表/FAQ）\n- 覆盖：双货币计费、工作台鉴权、创作流程说明\n\n**关联全局能力（非本页路由）**\n- **商务合作弹窗**（底部栏「联系」）：身份个人/企业 → 企业多步表单（团队/经验/制作类型/规模/手机/微信）→ 成功展示二维码；见 contact spec\n- **默认 landing**：启动进入创作 hub（projects）",
+      "fields": "- tutorialDocKey: introduction | quick-start | creation-guide | feature-guide | community-guide | faq\n- docNav[]: { key, label, icon }",
+      "rules": "- 静态文档内容，运营可更新\n- 游客可访问",
+      "interactions": "- 侧栏点击：切换 tutorialDocKey"
+    },
+    "message": {
+      "title": "消息",
+      "mainFunctions": "站内消息中心（底部栏）。聚合审核/授权/结算/互动通知。Demo 仍为占位页，文案「使用小提大作现在的消息模式」。计划 v1.1 接入现有小提大作消息模式。",
+      "functionPoints": "- 消息列表（Demo 占位）\n- 类型：审核结果、授权申请、结算/提现状态、社区互动\n- 目标态：未读标记、跳转对应业务页",
+      "fields": "- type, title, content, read, time",
+      "rules": "- 沿用线上消息模式（v1.1）\n- Demo 不展示真实消息数据",
+      "interactions": "- 点击消息：❓ 跳转对应业务页（v1.1）"
+    },
+    "data": {
+      "title": "数据与发票",
+      "mainFunctions": "数据看板 + **开票申请**（Demo 超前预览，Roadmap 原 v2.1）。含创作/收益等统计 Tab 与 invoiceDialog 申请表单。正式发票能力仍规划 v2.1。",
+      "functionPoints": "- 数据页多 Tab 统计（Demo mock）\n- **发票 Tab**（Demo 预览 ⬜）：开票申请表单 invoiceDialog\n- 提交：submitInvoice() Demo interact\n- 与结算/版权收益数据联动（目标态）",
+      "fields": "- dataTab: string（含 invoice）\n- invoiceDialog: boolean\n- invoiceForm: 开票抬头/税号/金额等字段",
+      "rules": "- 发票 Tab 标「Demo 预览」，不计入 v1.1 交付\n- 正式开票仍 v2.1\n- 统计数据 Demo 静态",
+      "interactions": "- Tab 切换 dataTab\n- 发票 Tab：打开 invoiceDialog → 填写 → 提交（Demo toast）"
+    },
+    "contact": {
+      "title": "商务合作（弹窗）",
+      "mainFunctions": "底部栏「联系」触发多步商务表单弹窗（v1.0）。身份选择→企业信息→成功展示二维码。非独立路由，全局 contactDialog。",
+      "functionPoints": "- 身份：个人 / 企业（ENTERPRISE 才展示完整表单）\n- 企业字段：团队名称、制作经验、制作类型（多选）、团队规模、手机、微信\n- 提交后 contactStep=success，展示商务二维码\n- 个人身份：直接展示二维码（无需提交）",
+      "fields": "- contactDialog, contactStep: form | success\n- contactForm: { identityType, teamName, productionExperience, productionTypes[], teamSize, mobile, wechatId }\n- contactIdentityOptions, contactExperienceOptions, contactProductionOptions, contactTeamSizeOptions\n- contactQrCodeUrl, contactSubmitted, contactSubmitting",
+      "rules": "- 企业身份必填校验后 submitContactForm\n- 提交成功 contactSubmitted=true\n- destroy-on-close 时 resetContactDialog",
+      "interactions": "- 底部栏联系：contactDialog=true\n- 选项按钮 toggle 多选制作类型\n- 提交 / 完成关闭弹窗"
+    }
+  },
+  "meta": {
+    "showcase": {
+      "no": 1,
+      "label": "大赏"
+    },
+    "prompts": {
+      "no": 2,
+      "label": "共享 Agent"
+    },
+    "copyright": {
+      "no": 3,
+      "label": "文创版权"
+    },
+    "tools": {
+      "no": 4,
+      "label": "工具"
+    },
+    "projects": {
+      "no": 5,
+      "label": "创作"
+    },
+    "canvas": {
+      "no": "5-1",
+      "label": "影片制作·画布"
+    },
+    "writing": {
+      "no": "5-2",
+      "label": "写作编辑器"
+    },
+    "script-eval": {
+      "no": "4-1",
+      "label": "剧本评估"
+    },
+    "script-breakdown": {
+      "no": "4-2",
+      "label": "剧本拆解"
+    },
+    "assets": {
+      "no": 6,
+      "label": "创作资产"
+    },
+    "settlement": {
+      "no": 7,
+      "label": "结算中心"
+    },
+    "userspace": {
+      "no": 8,
+      "label": "个人空间"
+    },
+    "tutorial": {
+      "no": 9,
+      "label": "教程中心"
+    },
+    "message": {
+      "no": 10,
+      "label": "消息"
+    },
+    "data": {
+      "no": 11,
+      "label": "数据与发票"
+    },
+    "contact": {
+      "no": 12,
+      "label": "商务合作"
+    }
+  },
+  "sections": [
+    {
+      "key": "mainFunctions",
+      "label": "主要功能"
+    },
+    {
+      "key": "functionPoints",
+      "label": "功能点"
+    },
+    {
+      "key": "fields",
+      "label": "字段"
+    },
+    {
+      "key": "rules",
+      "label": "需求规则"
+    },
+    {
+      "key": "interactions",
+      "label": "交互"
+    }
+  ],
+  "storagePrefix": "aixt-demo-page-req:20260707:",
+  "triggerKeys": [
+    "showcase",
+    "prompts",
+    "copyright",
+    "tools",
+    "projects",
+    "canvas",
+    "writing",
+    "script-eval",
+    "script-breakdown",
+    "assets",
+    "settlement",
+    "userspace",
+    "tutorial",
+    "message",
+    "data"
+  ]
+}

@@ -58,6 +58,10 @@ def replace_asset_paths(text: str, asset_map: dict[str, str]) -> str:
     return text
 
 
+def patch_prompt_library_js(content: str) -> str:
+    return content.replace("http://test.aixtdz.com/preview/", "https://aixtdz.com/preview/")
+
+
 def patch_tools_js(content: str, asset_map: dict[str, str]) -> str:
     for rel, uri in asset_map.items():
         if not rel.startswith("assets/tool-covers/"):
@@ -99,6 +103,14 @@ def sync_script_covers() -> None:
     subprocess.run([sys.executable, sync_script], check=True)
 
 
+def sync_tool_assets() -> None:
+    sync_script = os.path.join(DEMO_DIR, "sync-tool-assets.py")
+    if not os.path.exists(sync_script):
+        return
+    print("Syncing tool assets...")
+    subprocess.run([sys.executable, sync_script], check=True)
+
+
 def validate_assets(asset_map: dict[str, str], html: str) -> None:
     for i in range(1, 11):
         rel = f"assets/copyright-covers/book-{i:02d}.jpg"
@@ -114,10 +126,28 @@ def validate_assets(asset_map: dict[str, str], html: str) -> None:
     if re.search(r"cover:\s*'assets/copyright-covers/", html):
         print("ERROR: novel copyright cover paths not inlined", file=sys.stderr)
         sys.exit(1)
+    if "test.aixtdz.com" in html:
+        print("ERROR: standalone still references test.aixtdz.com", file=sys.stderr)
+        sys.exit(1)
+    if re.search(r"assets/canvas-example-assets/[\w.-]+\.(?:png|jpe?g)", html):
+        print("ERROR: tool result image paths not inlined", file=sys.stderr)
+        sys.exit(1)
+    if re.search(r"assets/generated/visual-ip-showcase/[\w.-]+\.(?:png|jpe?g)", html):
+        print("ERROR: visual-ip showcase paths not inlined", file=sys.stderr)
+        sys.exit(1)
+
+
+def sync_page_req_specs() -> None:
+    io_script = os.path.join(DEMO_DIR, "page_req_specs_io.py")
+    if not os.path.exists(io_script):
+        return
+    subprocess.run([sys.executable, io_script], check=True)
 
 
 def main() -> None:
     sync_script_covers()
+    sync_tool_assets()
+    sync_page_req_specs()
     asset_map = build_asset_map()
     print(f"Assets: {len(asset_map)} files")
 
@@ -132,6 +162,8 @@ def main() -> None:
             content = patch_tools_js(content, asset_map)
         elif script == "copyright-data.js":
             content = patch_copyright_js(content, asset_map)
+        elif script == "prompt-library-data.js":
+            content = patch_prompt_library_js(content)
         content = replace_asset_paths(content, asset_map)
         html = inline_script(html, script, content)
         print(f"Inlined: {script} ({os.path.getsize(path):,} bytes)")

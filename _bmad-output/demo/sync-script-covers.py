@@ -152,7 +152,21 @@ def main() -> None:
     manifest_path = COVER_DIR / "source-urls.json"
     manifest: dict[str, str] = {}
     if manifest_path.exists():
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            manifest = {}
+
+    fallback_list = DEMO_DIR / ".tmp-wwds-script-list.json"
+    if fallback_list.exists():
+        try:
+            payload = json.loads(fallback_list.read_text(encoding="utf-8"))
+            for item in payload.get("data", {}).get("records", []):
+                url = item.get("coverUrl", "")
+                if url.startswith("http"):
+                    manifest[cover_filename(url)] = url
+        except json.JSONDecodeError:
+            pass
 
     for item in collect_records(data):
         url = item.get("coverUrl", "")
