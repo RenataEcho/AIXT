@@ -284,6 +284,13 @@
     .writer .editor { padding:20px 26px; }
     .writer .editor textarea { width:100%; min-height:420px; border:none; outline:none; resize:none; background:transparent; font-size:15px; line-height:1.9; color: var(--el-text-color-primary); font-family:inherit; }
     .writer .ai { border-left:1px solid var(--el-border-color-lighter); padding:16px; background: var(--el-fill-color-light); }
+    .writing-placeholder { border:1px solid var(--el-border-color-lighter); border-radius:12px; padding:48px 40px; min-height:calc(100vh - 200px); background:var(--el-fill-color-light); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+    .writing-placeholder__main { font-size:18px; font-weight:600; color:var(--el-text-color-primary); margin-bottom:32px; line-height:1.6; }
+    .writing-placeholder__opts { max-width:640px; width:100%; display:flex; flex-direction:column; gap:16px; text-align:left; }
+    .writing-placeholder__item { display:flex; gap:14px; align-items:flex-start; padding:18px 20px; border-radius:10px; background:var(--el-bg-color); border:1px solid var(--el-border-color-lighter); }
+    .writing-placeholder__tag { flex-shrink:0; width:28px; height:28px; border-radius:8px; background:var(--brand-grad); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+    .writing-placeholder__item strong { display:block; font-size:14px; margin-bottom:6px; color:var(--el-text-color-primary); }
+    .writing-placeholder__item p { margin:0; font-size:13px; line-height:1.75; color:var(--el-text-color-secondary); }
     /* canvas */
     .canvas-wrap { position:relative; height: calc(100vh - 240px); border:1px solid var(--el-border-color-lighter); border-radius:12px;
       background: radial-gradient(var(--el-border-color) 1px, transparent 1px); background-size: 22px 22px; background-color: var(--el-bg-color); overflow:hidden; }
@@ -2060,7 +2067,7 @@
           <div class="proj-sec-head">
             <h2>最近项目</h2>
             <div class="proj-pills">
-              <button class="pill" :class="{on: projTab==='film'}" @click="projTab='film'">影片</button>
+              <button class="pill" :class="{on: projTab==='film'}" @click="projTab='film'">自由画布</button>
               <button class="pill" :class="{on: projTab==='sop'}" @click="projTab='sop'">SOP画布模式</button>
               <button class="pill" :class="{on: projTab==='writing'}" @click="projTab='writing'">写作</button>
               <button class="pill" :class="{on: projTab==='script'}" @click="projTab='script'">剧本</button>
@@ -2091,9 +2098,24 @@
 
       <!-- ========== 写作 ========== -->
       <div v-if="active==='writing'" class="page-shell page-shell--wide">
-        <div class="page-title"><div><h2>写作 · 小说/文本创作</h2><div class="desc">作品 → 整体架构 → 细纲 → 章节正文 → 导出全文（计费：🌽 米花）</div></div>
-          <div><el-button @click="go('copyright')"><el-icon><Notebook /></el-icon>一键确权挂牌</el-button><el-button type="primary">导出全文</el-button></div></div>
-        <div class="writer">
+        <div class="page-title"><div><h2>{{ writingEntryFrom==='script' ? '剧本 · 文本创作' : '写作 · 小说/文本创作' }}</h2>
+          <div class="desc" v-if="writingPlaceholder">使用小题大作现有的写作流程</div>
+          <div class="desc" v-else>作品 → 整体架构 → 细纲 → 章节正文 → 导出全文（计费：🌽 米花）</div></div>
+          <div v-if="!writingPlaceholder"><el-button @click="go('copyright')"><el-icon><Notebook /></el-icon>一键确权挂牌</el-button><el-button type="primary">导出全文</el-button></div></div>
+        <div v-if="writingPlaceholder" class="writing-placeholder">
+          <div class="writing-placeholder__main">使用小题大作现有的写作流程</div>
+          <div class="writing-placeholder__opts">
+            <div class="writing-placeholder__item">
+              <span class="writing-placeholder__tag">A</span>
+              <div><strong>写作优化</strong><p>提示词以及长文记忆优化（直接影响写作结果，需要重视，提示词调优）</p></div>
+            </div>
+            <div class="writing-placeholder__item">
+              <span class="writing-placeholder__tag">B</span>
+              <div><strong>写作流程优化</strong><p>市场反馈偏固化，需要再次讨论流程节点优化</p></div>
+            </div>
+          </div>
+        </div>
+        <div v-else class="writer">
           <div class="col chapters">
             <div style="padding:10px 14px;font-size:12px;color:var(--el-text-color-secondary)">章节目录 · 《凡人修仙诀》</div>
             <div v-for="(c,i) in chapters" :key="i" class="ch" :class="{active:i===1}">{{ c }}</div>
@@ -5006,10 +5028,10 @@ window.PAGE_REQ_SPECS = {
   projects: {
     title: '创作',
     mainFunctions: '项目工作台与「大作创建」入口。Banner 引流、最近项目网格、按漫剧/写作/通用 Tab 切换，快速进入画布或写作。',
-    functionPoints: '- 3D Banner 轮播：品牌活动与行动号召\n- 最近项目区：Tab 切换 film / sop / writing / script\n- 项目卡片网格：封面、名称、编码、更新时间\n- 新建卡片：跳转画布或写作\n- 全部项目弹窗（列表视图）',
-    fields: '- projTab：film | sop | writing | script\n- currentGridProjects[]：id、name、cover、link、code、date\n- projBanners[]：img、brand、sub、cta、action\n- projCreateConfig：当前 Tab 对应创建入口（含 canvasMode）',
-    rules: '- Tab 切换改变项目数据源与创建入口\n- 卡片点击跳转 link 或默认 create 配置\n- SOP 画布 Tab 进入 canvas 时 canvasSopOnly=true，隐藏模式切换、仅 SOP\n- Banner CTA 可配置 go 目标\n- 空项目仍展示「开始创作」占位卡',
-    interactions: '- Banner 轮播自动播放，点击 CTA 跳转\n- Tab 点击：切换 projTab\n- 点击项目卡：openGridProject → go(link)\n- 点击开始创作：SOP Tab 进入 canvas(sop)；影片/写作/剧本弹提示\n- 全部项目：打开 projListDialog',
+    functionPoints: '- 3D Banner 轮播：品牌活动与行动号召\n- 最近项目区：Tab 切换 film / sop / writing / script\n- 项目卡片网格：封面、名称、编码、更新时间\n- 新建卡片：跳转画布或写作\n- 全部项目弹窗（列表视图）\n- 写作/剧本 Tab：进入写作详情占位页（提示现有流程 + A/B 优化方向）',
+    fields: '- projTab：film | sop | writing | script\n- currentGridProjects[]：id、name、cover、link、code、date\n- projBanners[]：img、brand、sub、cta、action\n- projCreateConfig：当前 Tab 对应创建入口（含 canvasMode / entryFrom）\n- writingPlaceholder / writingEntryFrom：写作占位页状态',
+    rules: '- Tab 切换改变项目数据源与创建入口\n- 各 Tab 项目卡与「开始创作」入口行为一致\n- SOP 画布 Tab 进入 canvas 时 canvasSopOnly=true，隐藏模式切换、仅 SOP\n- 写作/剧本 Tab 进入写作页占位态，隐藏功能区，展示优化提示\n- 自由画布 Tab 弹窗提示沿用现有画布流程\n- Banner CTA 可配置 go 目标\n- 空项目仍展示「开始创作」占位卡',
+    interactions: '- Banner 轮播自动播放，点击 CTA 跳转\n- Tab 点击：切换 projTab\n- 点击项目卡 / 开始创作：enterProjEntry（统一入口）\n- 自由画布 Tab：弹窗提示现有画布流程\n- SOP Tab：进入 canvas(sop)\n- 写作/剧本 Tab：进入写作占位详情页\n- 全部项目：打开 projListDialog',
   },
   assets: {
     title: '创作资产',
@@ -5401,6 +5423,8 @@ window.PAGE_REQ_STORAGE_PREFIX = 'aixt-demo-page-req:';
         createModeDialog: false,
         cpBookDetailDialog: false,
         createModeMessage: '',
+        writingPlaceholder: false,
+        writingEntryFrom: null,
         covers: [
           'linear-gradient(135deg,#f6a35c,#e8623f)',
           'linear-gradient(135deg,#5b8def,#8b5cf6)',
@@ -5602,10 +5626,10 @@ window.PAGE_REQ_STORAGE_PREFIX = 'aixt-demo-page-req:';
         return this.scriptProjects;
       },
       projCreateConfig() {
-        if (this.projTab === 'film') return { label: '开始创作', mode: '从画布开始', message: '打开小题大作现在的画布模式', link: 'canvas' };
+        if (this.projTab === 'film') return { label: '开始创作', mode: '无限自由画布', message: '打开小题大作现在的画布模式', link: 'canvas' };
         if (this.projTab === 'sop') return { label: '开始创作', mode: 'SOP画布模式', message: '打开 SOP 画布创作模式', link: 'canvas', canvasMode: 'sop' };
-        if (this.projTab === 'writing') return { label: '开始写作', mode: '写作模式', message: '打开小题大作现在的写作模式', link: 'writing' };
-        return { label: '开始写作', mode: '剧本模式', message: '待确定剧本创作流程', link: 'canvas' };
+        if (this.projTab === 'writing') return { label: '开始写作', mode: '写作模式', message: '使用小题大作现有的写作流程', link: 'writing', entryFrom: 'writing' };
+        return { label: '开始写作', mode: '剧本模式', message: '使用小题大作现有的写作流程', link: 'writing', entryFrom: 'script' };
       },
       userIdentityLabel() {
         return { normal:'普通创作者', signed:'签约创作者', partner:'合伙人' }[this.userProfile.identity] || '普通创作者';
@@ -5865,6 +5889,13 @@ window.PAGE_REQ_STORAGE_PREFIX = 'aixt-demo-page-req:';
         if (key === 'canvas') {
           this.canvasSopOnly = !!(opts && opts.sopOnly);
           if (this.canvasSopOnly) this.canvasMode = 'sop';
+        }
+        if (key === 'writing') {
+          this.writingPlaceholder = !!(opts && opts.placeholder);
+          this.writingEntryFrom = (opts && opts.entryFrom) || null;
+        } else {
+          this.writingPlaceholder = false;
+          this.writingEntryFrom = null;
         }
         this.active = key;
         const s = document.querySelector('.stage');
@@ -6159,19 +6190,25 @@ window.PAGE_REQ_STORAGE_PREFIX = 'aixt-demo-page-req:';
       cpOpenScriptClaim() {
         this.cpScriptClaimDialog = true;
       },
-      openCreateMode() {
+      enterProjEntry() {
         const cfg = this.projCreateConfig;
         if (cfg.canvasMode) {
           if (cfg.canvasMode === 'sop') this.sopActive = 0;
-          this.go(cfg.link, { sopOnly: this.projTab === 'sop' });
+          this.go(cfg.link, { sopOnly: true });
+          return;
+        }
+        if (cfg.entryFrom) {
+          this.go('writing', { placeholder: true, entryFrom: cfg.entryFrom });
           return;
         }
         this.createModeMessage = cfg.message;
         this.createModeDialog = true;
       },
-      openGridProject(p) {
-        const cfg = this.projCreateConfig;
-        this.go(p.link || cfg.link, { sopOnly: this.projTab === 'sop' });
+      openCreateMode() {
+        this.enterProjEntry();
+      },
+      openGridProject() {
+        this.enterProjEntry();
       },
       openPurchaseFlow() {
         this.createModeMessage = '使用小提大作现在的购买流程';
