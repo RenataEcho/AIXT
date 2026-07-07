@@ -353,29 +353,31 @@
 
 | 项 | 说明 |
 |----|------|
-| **功能定位** | **项目 hub / 生产总入口**，统一管理影片、写作、剧本三类项目 |
-| **核心作用** | 降低找项目成本；三 Tab 分流到不同创作模式；Banner 活动导流 |
+| **功能定位** | **项目 hub / 生产总入口**，统一管理自由画布、SOP画布、写作、剧本四类项目 |
+| **核心作用** | 降低找项目成本；**四 Tab** 分流到不同创作模式；Banner 活动导流 |
 | **使用对象** | 全体创作者（日常入口）；新手从创建卡起项目 |
 | **上游依赖** | 用户账号；历史项目数据 |
-| **下游衔接** | 影片→画布；写作→写作编辑器；剧本→画布(待确认) |
+| **下游衔接** | 自由画布/SOP→canvas；写作/剧本→写作编辑器或占位页 |
 | **计费** | 本页不涉及；下游创作消耗米花/爆米花 |
-| **Demo 状态** | hub ✅；子页 writing/canvas ✅ |
+| **Demo 状态** | hub ✅；**2026-07-07** 四 Tab + enterProjEntry 统一入口 |
 
 ### 功能需求表 · 创作 hub
 
 | 页面板块 | 功能 | 需求说明 | 字段注释 | 截图示例 | 计划版本 |
 |---------|------|---------|---------|---------|----------|
-| Banner | 3D 活动轮播 | 顶部活动 Banner，可跳转画布。✅ | projBanners[]: { title, sub, link } | Demo · projects · Banner | v1.0 |
-| Tab | 三 Tab 切换 | 影片 / 写作 / 剧本。✅ | projTab: film/writing/script | Demo · projects · Tab | v1.0 |
-| 创建卡 | 新建项目 | 每 Tab 首张创建卡；弹窗说明后进入编辑器。✅ | projCreateConfig | Demo · projects · 创建卡 | v1.0 |
-| 项目列表 | 历史项目 | 封面、名称、日期/字数/集数；点击进入。✅ | filmProjects/writingProjects/scriptProjects[] | Demo · projects · 宫格 | v1.0 |
-| 创建弹窗 | 模式说明 | 提示沿用现有画布/写作流程。🔶 | createModeMessage: string | Demo · createModeDialog | v1.0 |
+| Banner | 3D 图片轮播 | brand/sub/cta/img/action 结构；CTA 可跳 canvas。✅ | projBanners[]: { brand, sub, cta, img, action } | Demo · projects · Banner | v1.1 |
+| Tab | 四 Tab 切换 | **自由画布 / SOP画布 / 写作 / 剧本**（07-07 扩展）。✅ | projTab: film \| sop \| writing \| script | Demo · projects · Tab | v1.1 |
+| 创建卡 | 统一创建入口 | enterProjEntry：SOP→canvas(sopOnly)；写作/剧本→占位；自由→弹窗。✅ | enterProjEntry(); projCreateConfig | Demo · projects · 创建卡 | v1.1 |
+| SOP 项目池 | SOP 独立列表 | SOP Tab 独立宫格 sopCanvasProjects[]。✅ | sopCanvasProjects[] | Demo · projects · SOP Tab | v1.1 |
+| 项目列表 | 历史项目 | 各 Tab 独立项目池；封面、名称、日期。✅ | filmProjects/writingProjects/scriptProjects[] | Demo · projects · 宫格 | v1.0 |
+| 创建弹窗 | 模式说明 | 自由画布 Tab 弹窗提示沿用现有流程。🔶 | createModeMessage: string | Demo · createModeDialog | v1.0 |
 
 ### 功能需求表 · 子页：写作编辑器（writing）
 
 | 页面板块 | 功能 | 需求说明 | 字段注释 | 截图示例 | 计划版本 |
 |---------|------|---------|---------|---------|----------|
-| 顶栏 | 作品操作 | 展示作品名；一键确权挂牌、导出全文。✅ | 作品 title | Demo · writing · 顶栏 | v1.0 |
+| 顶栏 | 作品操作 | 展示作品名；一键确权、导出（**writingPlaceholder 时隐藏**）。✅ | writingPlaceholder: boolean | Demo · writing · 顶栏 | v1.0 |
+| 占位页 | 写作/剧本占位 | 写作/剧本 Tab 进入占位态，展示流程说明与 A/B 优化方向。✅ | writingEntryFrom: 'script'\|null | Demo · writing · placeholder | v1.1 |
 | 章节目录 | 章节树 | 左栏章节列表，切换当前章。✅ | chapters[]: { id, title, wordCount } | Demo · writing · 左栏 | v1.0 |
 | 正文编辑 | 编辑器 | 中栏编辑章节正文。✅ | draftText: string | Demo · writing · 编辑器 | v1.0 |
 | AI 助手 | AI 生成 | 选风格；生成大纲/细纲/正文/重写；消耗🌽。✅ | writeStyle: string | Demo · writing · AI助手 | v1.0 |
@@ -385,13 +387,20 @@
 
 | 页面板块 | 功能 | 需求说明 | 字段注释 | 截图示例 | 计划版本 |
 |---------|------|---------|---------|---------|----------|
-| 模式切换 | SOP/自由画布 | 双模式切换；共享项目数据。✅ | canvasMode: sop/free | Demo · canvas · 模式切换 | v1.0 |
+| 模式切换 | SOP/自由画布 | 双模式；`canvasSopOnly` 时仅 SOP。✅ | canvasMode: sop/free; canvasSopOnly: boolean | Demo · canvas · 模式 | v1.1 |
+| SOP · 选题 | AI 选题+多选题材 | 类型 Radio + 题材 Tag 多选 + 自定义 + AI 生成选题卡片。✅ | sopFilmTypes; sopSelectedGenres[]; sopTopicResults[] | Demo · canvas · SOP 步骤0 | v1.1 |
+| SOP · 风格 | 多选风格+预览 | 多选 styleTags + 风格图预览 + 主风格。✅ | sopSelectedStyles[]; sopStyleResults[] | Demo · canvas · SOP 风格 | v1.1 |
+| SOP · 剧本 | 分场编辑 | 场次导航 + 双 textarea 自定义。✅ | sopScriptScenes[]; sopScriptCustomReq/Prompt | Demo · canvas · SOP 剧本 | v1.1 |
+| SOP · 分镜 | Excel 分镜表 | 可调数量表格 seq/chars/props/duration/content。✅ | sopStoryboardRows[]; sopStoryboardCount | Demo · canvas · SOP 分镜 | v1.1 |
+| SOP · 人物 | 3D 角色工作室 | 三视图/表情；Slider 调姿；一致性锁定。✅ | sopCharacterRows[]; pose3d{}; views{}; expressions[] | Demo · canvas · SOP 人物 | v1.1 |
+| SOP · 场景 | ArchViz 机位矩阵 | 九宫格机位；DOF/曝光/白平衡。✅ | sopSceneRows[]; cameraGrid[]; activeCam | Demo · canvas · SOP 场景 | v1.1 |
+| SOP · 合成 | 注入画布 | 完成后 sopEnteredCanvas 展示节点链摘要。✅ | sopEnteredCanvas; sopConfirmedTopicTitle | Demo · canvas · SOP 合成 | v1.1 |
 | SOP · 步骤条 | 七步流水线 | 选题→风格→剧本→分镜→人物→场景→合成视频；gate 锁定。✅ | sopSteps[7], sopActive: number | Demo · canvas · 步骤条 | v1.0 |
-| SOP · 选题 | 选题阶段 | 影片类型；爆款众筹；题材库。✅ | filmType, selectedTopic, crowdfund[], topicsByType | Demo · canvas · 步骤0 | v1.0 |
 | SOP · 执行 | 阶段 Agent | 逐步执行；上/下一步；失败重试。✅ | current_step, failed_step, completed[] | Demo · canvas · 各步骤 | v1.0 |
 | SOP · 续跑 | 断点续跑 | 失败从断点恢复，保留已完成产物。✅ | retry 动作 | Demo · canvas · 重试 | v1.1 |
-| 自由画布 | 节点编排 | 节点面板+示例链：剧本→分镜→生图→视频→调度。✅ | 节点 type/id/连线 | Demo · canvas · 自由模式 | v1.1 |
-| 计费 | 爆米花消耗 | 生成消耗🍿；不足阻断引导充值。🔶 | getCost, 余额 | Demo · canvas · 计费提示 | v1.1 |
+| SOP · 计费 | 步骤预估消耗 | 底栏「本次预估消耗 🍿 N」。✅ | 预估 number | Demo · canvas · footer | v1.1 |
+| 自由画布 | 节点编排 | 节点面板+示例链（canvasSopOnly 或 sop 模式时隐藏）。✅ | 节点 type/id/连线 | Demo · canvas · 自由模式 | v1.1 |
+| 计费 | 爆米花消耗 | 生成消耗🍿；不足阻断引导充值。🔶 | getCost, 余额 | Demo · canvas · 计费 | v1.1 |
 
 ---
 
@@ -719,4 +728,19 @@
 
 ---
 
-*生成时间：2026-07-06 · 97 条功能需求 · Roadmap 已确认 · 各表含计划版本列*
+*生成时间：2026-07-07 · 主清单已合并 07-07 创作/SOP/写作增量 · 完整增量见 `prd-功能清单-增量-2026-07-07-Excel版.md`*
+
+---
+
+## 附录 C · 2026-07-07 增量清单
+
+> 今日 Demo 变更（6508 行）完整 Excel 表：**`prd-功能清单-增量-2026-07-07-Excel版.md`**
+
+| 统计 | 数量 |
+|------|------|
+| 新增功能 | 38 条 |
+| 修改功能 | 22 条 |
+| Demo 专用 | 2 条 |
+| 外置 JS | 6 个（含 sop-workflow-data.js、page-req-specs.js） |
+
+**重点增量**：创作四 Tab · SOP 3D 角色/ArchViz 场景 · 工具 7 项独立 UI · 文创 WWDS 内嵌详情 · 个人空间 Hub
