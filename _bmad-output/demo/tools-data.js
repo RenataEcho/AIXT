@@ -585,7 +585,7 @@
   };
 
   window.WORKBENCH_TOOLS = {
-    assetBase: BASE,
+    assetBase: ASSET,
     scriptBreakdownDemo: SCRIPT_BREAKDOWN_DEMO,
     tools: [
       {
