@@ -2061,12 +2061,13 @@
             <h2>最近项目</h2>
             <div class="proj-pills">
               <button class="pill" :class="{on: projTab==='film'}" @click="projTab='film'">影片</button>
+              <button class="pill" :class="{on: projTab==='sop'}" @click="projTab='sop'">SOP画布模式</button>
               <button class="pill" :class="{on: projTab==='writing'}" @click="projTab='writing'">写作</button>
               <button class="pill" :class="{on: projTab==='script'}" @click="projTab='script'">剧本</button>
             </div>
           </div>
 
-          <!-- 最近项目 · 宫格（影片 / 写作 / 剧本统一） -->
+          <!-- 最近项目 · 宫格（影片 / SOP画布 / 写作 / 剧本统一） -->
           <div class="canvas-grid">
             <div class="canvas-card create" @click="openCreateMode">
               <div class="cg-inner">
@@ -2075,7 +2076,7 @@
                 <span class="cg-mode">{{ projCreateConfig.mode }}</span>
               </div>
             </div>
-            <div class="canvas-card" v-for="p in currentGridProjects" :key="p.id" @click="go(p.link || projCreateConfig.link)">
+            <div class="canvas-card" v-for="p in currentGridProjects" :key="p.id" @click="openGridProject(p)">
               <div class="cg-cover" :style="p.cover ? {backgroundImage: 'url('+p.cover+')'} : {}">
                 <span v-if="!p.cover" class="wm">{{ p.genre || '小题大作' }}</span>
                 <div class="cg-overlay">
@@ -2121,15 +2122,15 @@
       <div v-if="active==='canvas'" class="page-shell page-shell--wide">
         <div class="page-title">
           <div><h2>影片制作 <span class="badge-new">融合大作联盟创作流程</span></h2>
-            <div class="desc">双模式：自由节点画布 ＋ SOP 引导流水线（共享同一份数据）· 计费：🍿 爆米花</div></div>
-          <el-radio-group v-model="canvasMode" size="large">
+            <div class="desc">{{ canvasSopOnly ? 'SOP 引导流水线 · 严格步骤创作 · 计费：🍿 爆米花' : '双模式：自由节点画布 ＋ SOP 引导流水线（共享同一份数据）· 计费：🍿 爆米花' }}</div></div>
+          <el-radio-group v-if="!canvasSopOnly" v-model="canvasMode" size="large">
             <el-radio-button label="sop">SOP 引导模式</el-radio-button>
             <el-radio-button label="free">自由画布</el-radio-button>
           </el-radio-group>
         </div>
-        <div class="fusion-hint">融合说明：大作联盟「选题→风格→剧本→分镜→人物→场景→合成视频」严格流水线作为「引导模式」融入；产物即节点，可切到自由画布精修。当前项目：P001 雨棚名单 · 大作联盟21章正式试跑。</div>
+        <div class="fusion-hint">{{ canvasSopOnly ? '大作联盟「选题→风格→剧本→分镜→人物→场景→合成视频」严格流水线 · 当前项目：P001 雨棚名单' : '融合说明：大作联盟「选题→风格→剧本→分镜→人物→场景→合成视频」严格流水线作为「引导模式」融入；产物即节点，可切到自由画布精修。当前项目：P001 雨棚名单 · 大作联盟21章正式试跑。' }}</div>
 
-        <div v-if="canvasMode==='sop'">
+        <div v-if="canvasSopOnly || canvasMode==='sop'">
           <div class="card">
             <el-steps :active="sopActive" finish-status="success" align-center>
               <el-step v-for="(s,i) in sopSteps" :key="i" :title="s" />
@@ -2190,7 +2191,7 @@
           </div>
         </div>
 
-        <div v-else>
+        <div v-else-if="!canvasSopOnly">
           <div class="canvas-wrap">
             <div class="palette">
               <div style="font-size:12px;font-weight:600;margin-bottom:8px;">节点面板</div>
@@ -5005,10 +5006,10 @@ window.PAGE_REQ_SPECS = {
   projects: {
     title: '创作',
     mainFunctions: '项目工作台与「大作创建」入口。Banner 引流、最近项目网格、按漫剧/写作/通用 Tab 切换，快速进入画布或写作。',
-    functionPoints: '- 3D Banner 轮播：品牌活动与行动号召\n- 最近项目区：Tab 切换 film / writing / general\n- 项目卡片网格：封面、名称、编码、更新时间\n- 新建卡片：跳转画布或写作\n- 全部项目弹窗（列表视图）',
-    fields: '- projTab：film | writing | general\n- currentGridProjects[]：id、name、cover、link、code、date\n- projBanners[]：img、brand、sub、cta、action\n- projCreateConfig：当前 Tab 对应创建入口',
-    rules: '- Tab 切换改变项目数据源与创建入口\n- 卡片点击跳转 link 或默认 create 配置\n- Banner CTA 可配置 go 目标\n- 空项目仍展示「开始创作」占位卡',
-    interactions: '- Banner 轮播自动播放，点击 CTA 跳转\n- Tab 点击：切换 projTab\n- 点击项目卡：go(link)\n- 点击开始创作：go(canvas/writing)\n- 全部项目：打开 projListDialog',
+    functionPoints: '- 3D Banner 轮播：品牌活动与行动号召\n- 最近项目区：Tab 切换 film / sop / writing / script\n- 项目卡片网格：封面、名称、编码、更新时间\n- 新建卡片：跳转画布或写作\n- 全部项目弹窗（列表视图）',
+    fields: '- projTab：film | sop | writing | script\n- currentGridProjects[]：id、name、cover、link、code、date\n- projBanners[]：img、brand、sub、cta、action\n- projCreateConfig：当前 Tab 对应创建入口（含 canvasMode）',
+    rules: '- Tab 切换改变项目数据源与创建入口\n- 卡片点击跳转 link 或默认 create 配置\n- SOP 画布 Tab 进入 canvas 时 canvasSopOnly=true，隐藏模式切换、仅 SOP\n- Banner CTA 可配置 go 目标\n- 空项目仍展示「开始创作」占位卡',
+    interactions: '- Banner 轮播自动播放，点击 CTA 跳转\n- Tab 点击：切换 projTab\n- 点击项目卡：openGridProject → go(link)\n- 点击开始创作：SOP Tab 进入 canvas(sop)；影片/写作/剧本弹提示\n- 全部项目：打开 projListDialog',
   },
   assets: {
     title: '创作资产',
@@ -5080,6 +5081,7 @@ window.PAGE_REQ_STORAGE_PREFIX = 'aixt-demo-page-req:';
           { key:'script', label:'剧本' },
         ],
         canvasMode: 'sop',
+        canvasSopOnly: false,
         sopActive: 0,
         sopSteps: ['选题','风格','剧本','分镜','人物','场景','合成视频'],
         creationMode: 'infinite',
@@ -5358,6 +5360,12 @@ window.PAGE_REQ_STORAGE_PREFIX = 'aixt-demo-page-req:';
           { id:'f4', name:'义体改造', date:'2026/07/03', cover:'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80' },
           { id:'f5', name:'一夜封神', date:'2026/07/02', cover:'' },
         ],
+        sopCanvasProjects: [
+          { id:'sc1', name:'雨棚名单', date:'2026/07/04', cover:'', link:'canvas' },
+          { id:'sc2', name:'义体改造', date:'2026/07/03', cover:'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80', link:'canvas' },
+          { id:'sc3', name:'一夜封神', date:'2026/07/02', cover:'', link:'canvas' },
+          { id:'sc4', name:'未命名项目', date:'2024/07/05', cover:'', link:'canvas' },
+        ],
         writingProjects: [
           { id:'w1', name:'凡人修仙诀', genre:'仙侠', date:'2026/07/04', cover:'', link:'writing' },
           { id:'w2', name:'遮天传奇', genre:'玄幻', date:'2026/07/03', cover:'', link:'writing' },
@@ -5589,11 +5597,13 @@ window.PAGE_REQ_STORAGE_PREFIX = 'aixt-demo-page-req:';
       },
       currentGridProjects() {
         if (this.projTab === 'film') return this.filmProjects;
+        if (this.projTab === 'sop') return this.sopCanvasProjects;
         if (this.projTab === 'writing') return this.writingProjects;
         return this.scriptProjects;
       },
       projCreateConfig() {
         if (this.projTab === 'film') return { label: '开始创作', mode: '从画布开始', message: '打开小题大作现在的画布模式', link: 'canvas' };
+        if (this.projTab === 'sop') return { label: '开始创作', mode: 'SOP画布模式', message: '打开 SOP 画布创作模式', link: 'canvas', canvasMode: 'sop' };
         if (this.projTab === 'writing') return { label: '开始写作', mode: '写作模式', message: '打开小题大作现在的写作模式', link: 'writing' };
         return { label: '开始写作', mode: '剧本模式', message: '待确定剧本创作流程', link: 'canvas' };
       },
@@ -5844,7 +5854,7 @@ window.PAGE_REQ_STORAGE_PREFIX = 'aixt-demo-page-req:';
         if (it.badge === 'Pro') return 'pro';
         return 'new';
       },
-      go(key) {
+      go(key, opts) {
         if (this.active === 'script-breakdown' && key !== 'script-breakdown') this.stopSbPlay();
         if (this.active === 'script-eval' && key !== 'script-eval' && this.scriptEvalTimer) {
           clearTimeout(this.scriptEvalTimer);
@@ -5852,6 +5862,10 @@ window.PAGE_REQ_STORAGE_PREFIX = 'aixt-demo-page-req:';
           this.scriptEvalRunning = false;
         }
         if (key !== 'copyright') this.cpScriptDetailId = null;
+        if (key === 'canvas') {
+          this.canvasSopOnly = !!(opts && opts.sopOnly);
+          if (this.canvasSopOnly) this.canvasMode = 'sop';
+        }
         this.active = key;
         const s = document.querySelector('.stage');
         if (s) s.scrollTop = 0;
@@ -6146,8 +6160,18 @@ window.PAGE_REQ_STORAGE_PREFIX = 'aixt-demo-page-req:';
         this.cpScriptClaimDialog = true;
       },
       openCreateMode() {
-        this.createModeMessage = this.projCreateConfig.message;
+        const cfg = this.projCreateConfig;
+        if (cfg.canvasMode) {
+          if (cfg.canvasMode === 'sop') this.sopActive = 0;
+          this.go(cfg.link, { sopOnly: this.projTab === 'sop' });
+          return;
+        }
+        this.createModeMessage = cfg.message;
         this.createModeDialog = true;
+      },
+      openGridProject(p) {
+        const cfg = this.projCreateConfig;
+        this.go(p.link || cfg.link, { sopOnly: this.projTab === 'sop' });
       },
       openPurchaseFlow() {
         this.createModeMessage = '使用小提大作现在的购买流程';

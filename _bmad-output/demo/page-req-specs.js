@@ -35,10 +35,10 @@ window.PAGE_REQ_SPECS = {
   projects: {
     title: '创作',
     mainFunctions: '项目工作台与「大作创建」入口。Banner 引流、最近项目网格、按漫剧/写作/通用 Tab 切换，快速进入画布或写作。',
-    functionPoints: '- 3D Banner 轮播：品牌活动与行动号召\n- 最近项目区：Tab 切换 film / writing / general\n- 项目卡片网格：封面、名称、编码、更新时间\n- 新建卡片：跳转画布或写作\n- 全部项目弹窗（列表视图）',
-    fields: '- projTab：film | writing | general\n- currentGridProjects[]：id、name、cover、link、code、date\n- projBanners[]：img、brand、sub、cta、action\n- projCreateConfig：当前 Tab 对应创建入口',
-    rules: '- Tab 切换改变项目数据源与创建入口\n- 卡片点击跳转 link 或默认 create 配置\n- Banner CTA 可配置 go 目标\n- 空项目仍展示「开始创作」占位卡',
-    interactions: '- Banner 轮播自动播放，点击 CTA 跳转\n- Tab 点击：切换 projTab\n- 点击项目卡：go(link)\n- 点击开始创作：go(canvas/writing)\n- 全部项目：打开 projListDialog',
+    functionPoints: '- 3D Banner 轮播：品牌活动与行动号召\n- 最近项目区：Tab 切换 film / sop / writing / script\n- 项目卡片网格：封面、名称、编码、更新时间\n- 新建卡片：跳转画布或写作\n- 全部项目弹窗（列表视图）',
+    fields: '- projTab：film | sop | writing | script\n- currentGridProjects[]：id、name、cover、link、code、date\n- projBanners[]：img、brand、sub、cta、action\n- projCreateConfig：当前 Tab 对应创建入口（含 canvasMode）',
+    rules: '- Tab 切换改变项目数据源与创建入口\n- 卡片点击跳转 link 或默认 create 配置\n- SOP 画布 Tab 进入 canvas 时 canvasSopOnly=true，隐藏模式切换、仅 SOP\n- Banner CTA 可配置 go 目标\n- 空项目仍展示「开始创作」占位卡',
+    interactions: '- Banner 轮播自动播放，点击 CTA 跳转\n- Tab 点击：切换 projTab\n- 点击项目卡：openGridProject → go(link)\n- 点击开始创作：SOP Tab 进入 canvas(sop)；影片/写作/剧本弹提示\n- 全部项目：打开 projListDialog',
   },
   assets: {
     title: '创作资产',
